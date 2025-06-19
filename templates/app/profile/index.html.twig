@@ -1,6 +1,6 @@
 {% extends 'app/base.html.twig' %}
 
-{% block title %}Profil - {{ user.username }}{% endblock %}
+{% block title %}{% if isOwnProfile %}Profilim{% else %}{{ user.username }} - Profil{% endif %}{% endblock %}
 
 {% block body %}
     <div class="profile-container">
@@ -65,10 +65,23 @@
                 {% endif %}
 
                 <div class="profile-actions">
-                    <a href="{{ path('app_profile_edit') }}" class="btn-action btn-primary">
-                        <i class="fas fa-edit"></i>
-                        <span>Profili Düzenle</span>
-                    </a>
+                    {% if isOwnProfile %}
+                        <a href="{{ path('app_profile_edit') }}" class="btn-action btn-primary">
+                            <i class="fas fa-edit"></i>
+                            <span>Profili Düzenle</span>
+                        </a>
+                    {% elseif app.user %}
+                        <div class="action-buttons">
+                            <a href="#" class="btn-action btn-message">
+                                <i class="fas fa-envelope"></i>
+                                <span>Mesaj Gönder</span>
+                            </a>
+                            <a href="#" class="btn-action btn-friend">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Arkadaş Ekle</span>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -368,6 +381,13 @@
                 margin-top: 2rem;
             }
 
+            .profile-container .action-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.8rem;
+                width: 100%;
+            }
+
             .profile-container .btn-action {
                 flex: 1;
                 display: flex;
@@ -388,6 +408,18 @@
                 background: linear-gradient(135deg, #3498db, #2980b9);
                 color: #ffffff;
                 box-shadow: 0 8px 30px rgba(52, 152, 219, 0.3);
+            }
+            
+            .profile-container .btn-message {
+                background: linear-gradient(135deg, #9b59b6, #8e44ad);
+                color: #ffffff;
+                box-shadow: 0 8px 30px rgba(155, 89, 182, 0.3);
+            }
+            
+            .profile-container .btn-friend {
+                background: linear-gradient(135deg, #2ecc71, #27ae60);
+                color: #ffffff;
+                box-shadow: 0 8px 30px rgba(46, 204, 113, 0.3);
             }
 
             .profile-container .btn-primary:hover {

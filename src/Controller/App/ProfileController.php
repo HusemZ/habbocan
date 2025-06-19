@@ -36,6 +36,33 @@ class ProfileController extends AbstractController
         return $this->render('app/profile/index.html.twig', [
             'user' => $user,
             'habboProfile' => $habboProfile,
+            'isOwnProfile' => true
+        ]);
+    }
+
+    #[Route('/{username}', name: 'app_profile_view', priority: -1)]
+    public function viewProfile(string $username): Response
+    {
+        $profileUser = $this->userRepository->findOneBy(['username' => $username]);
+        
+        if (!$profileUser) {
+            throw $this->createNotFoundException('Kullanıcı bulunamadı');
+        }
+        
+        $currentUser = $this->getUser();
+        $isOwnProfile = false;
+        
+        if ($currentUser && $currentUser->getUsername() === $username) {
+            $isOwnProfile = true;
+        }
+        
+        $habboProfile = $this->habboApiService->getProfileByUsername($username);
+        
+        return $this->render('app/profile/index.html.twig', [
+            'user' => $profileUser,
+            'habboProfile' => $habboProfile,
+            'isOwnProfile' => $isOwnProfile,
+            'currentUser' => $currentUser
         ]);
     }
 
