@@ -1,0 +1,255 @@
+.habbo-ambassadors-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #a5b1d6;
+}
+
+.habbo-ambassadors-container .page-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #1a2545;
+    padding-bottom: 15px;
+}
+
+.habbo-ambassadors-container .page-header h1 {
+    color: #3498db;
+    font-weight: 700;
+}
+
+.habbo-ambassadors-container .content-section {
+    background-color: #18233f;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.habbo-ambassadors-container .section-intro {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.habbo-ambassadors-container .intro-text {
+    flex: 3;
+    min-width: 300px;
+}
+
+.habbo-ambassadors-container .intro-image {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.habbo-ambassadors-container .intro-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.habbo-ambassadors-container .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #a5b1d6;
+}
+
+.habbo-ambassadors-container h2 {
+    color: #3498db;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a2545;
+}
+
+.habbo-ambassadors-container .ambassadors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.habbo-ambassadors-container .ambassador-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #111a39;
+    border-radius: 8px;
+    border: 2px solid #1a2545;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.habbo-ambassadors-container .ambassador-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: #3498db;
+}
+
+.habbo-ambassadors-container .ambassador-avatar {
+    position: relative;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.habbo-ambassadors-container .ambassador-info h3 {
+    margin: 0 0 10px;
+    color: #ffffff;
+}
+
+.habbo-ambassadors-container .ambassador-badge {
+    background-color: #3498db;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+.habbo-ambassadors-container .ambassador-start-date {
+    font-size: 0.9rem;
+    color: #a5b1d6;
+    margin-top: 10px;
+}
+
+.habbo-ambassadors-container .duties-list {
+    padding-left: 20px;
+}
+
+.habbo-ambassadors-container .duties-list li {
+    margin-bottom: 10px;
+    list-style-type: disc;
+}
+
+.habbo-ambassadors-container .info-box {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #111a39;
+    border: 2px solid #1a2545;
+    margin-bottom: 30px;
+}
+
+.habbo-ambassadors-container .info-box-icon {
+    display: flex;
+    color: #f39c12;
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.habbo-ambassadors-container .info-box-content p {
+    margin-bottom: 10px;
+}
+
+.habbo-ambassadors-container .selection-criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.habbo-ambassadors-container .criteria-item {
+    padding: 20px;
+    background-color: #111a39;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #1a2545;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.habbo-ambassadors-container .criteria-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-color: #3498db;
+}
+
+.habbo-ambassadors-container .criteria-icon {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.habbo-ambassadors-container .criteria-content h3 {
+    margin: 0;
+    color: #ffffff;
+}
+
+.habbo-ambassadors-container .selection-note {
+    margin-top: 15px;
+    font-style: italic;
+}
+
+.habbo-ambassadors-container .contact-info-list {
+    padding-left: 20px;
+}
+
+.habbo-ambassadors-container .contact-info-list li {
+    margin-bottom: 10px;
+    list-style-type: disc;
+}
+
+.habbo-ambassadors-container .section-faq {
+    margin-top: 40px;
+}
+
+.habbo-ambassadors-container .faq-item {
+    background-color: #111a39;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 2px solid #1a2545;
+}
+
+.habbo-ambassadors-container .faq-question {
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #1a2545;
+}
+
+.habbo-ambassadors-container .faq-question i {
+    font-size: 1.5rem;
+    color: #3498db;
+}
+
+.habbo-ambassadors-container .faq-question h3 {
+    margin: 0;
+    color: #ffffff;
+}
+
+.habbo-ambassadors-container .faq-answer {
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .habbo-ambassadors-container .section-intro {
+        flex-direction: column;
+    }
+
+    .habbo-ambassadors-container .ambassadors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .habbo-ambassadors-container .selection-criteria-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .habbo-ambassadors-container .info-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .habbo-ambassadors-container .info-box-icon {
+        margin-bottom: 10px;
+    }
+
+    .habbo-ambassadors-container .faq-question {
+        flex-direction: column;
+        text-align: center;
+    }
+}

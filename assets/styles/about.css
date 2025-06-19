@@ -1,0 +1,207 @@
+.habbo-about-us-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #a5b1d6;
+}
+
+.habbo-about-us-container .page-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #1a2545;
+    padding-bottom: 15px;
+}
+
+.habbo-about-us-container .page-header h1 {
+    color: #3498db;
+    font-weight: 700;
+}
+
+.habbo-about-us-container .content-section {
+    background-color: #18233f;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.habbo-about-us-container .section-intro {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.habbo-about-us-container .intro-text {
+    flex: 3;
+    min-width: 300px;
+}
+
+.habbo-about-us-container .intro-image {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.habbo-about-us-container .intro-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.habbo-about-us-container .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #a5b1d6;
+    margin-bottom: 15px;
+}
+
+.habbo-about-us-container h2 {
+    color: #3498db;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a2545;
+}
+
+.habbo-about-us-container .brand-title {
+    color: #3498db;
+    border-bottom: none;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: left;
+    padding-bottom: 0;
+}
+
+.habbo-about-us-container .section-about-us {
+    margin-bottom: 40px;
+}
+
+.habbo-about-us-container .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.habbo-about-us-container .about-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background-color: #111a39;
+    border-radius: 8px;
+    border: 2px solid #1a2545;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.habbo-about-us-container .about-text p {
+    line-height: 1.6;
+}
+
+.habbo-about-us-container .section-values {
+    margin-bottom: 40px;
+}
+
+.habbo-about-us-container .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.habbo-about-us-container .value-item {
+    background-color: #111a39;
+    border-radius: 8px;
+    border: 2px solid #1a2545;
+    padding: 25px 20px;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.habbo-about-us-container .value-item:hover {
+    transform: translateY(-5px);
+    border-color: #3498db;
+}
+
+.habbo-about-us-container .value-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 15px;
+}
+
+.habbo-about-us-container .value-item h3 {
+    color: #ffffff;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+}
+
+.habbo-about-us-container .value-item p {
+    color: #a5b1d6;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.habbo-about-us-container .section-join-us {
+    background-color: #111a39;
+    border-radius: 8px;
+    border: 2px solid #1a2545;
+    padding: 30px;
+    text-align: center;
+}
+
+.habbo-about-us-container .join-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.habbo-about-us-container .join-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.habbo-about-us-container .cta-button {
+    margin-top: 20px;
+}
+
+.habbo-about-us-container .btn-primary {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #ffffff;
+    padding: 10px 25px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.habbo-about-us-container .btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+    .habbo-about-us-container .section-intro {
+        flex-direction: column;
+    }
+
+    .habbo-about-us-container .about-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .habbo-about-us-container .about-icon {
+        margin-bottom: 15px;
+    }
+
+    .habbo-about-us-container .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .habbo-about-us-container .brand-title {
+        text-align: center;
+    }
+}

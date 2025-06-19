@@ -1,0 +1,54 @@
+:root {
+    /* Ana renkler */
+    --primary-dark: #0d152c;
+    --primary-dark-lighter: #111a39;
+    --primary-dark-lightest: #18233f; /* Vurgu renkleri */
+    --accent-blue: #3498db;
+    --accent-blue-dark: #2980b9;
+    --accent-purple: #9b59b6;
+    --accent-purple-dark: #8e44ad;
+    --accent-green: #2ecc71;
+    --accent-green-dark: #27ae60;
+    --accent-gold: #f39c12;
+    --accent-gold-dark: #e67e22;
+
+    /* Metin renkleri */
+    --text-white: #ffffff;
+    --text-light: #d1d9f0;
+    --text-muted: #a5b1d6;
+    --text-dark: #566182;
+
+    /* Kenarlık renkleri */
+    --border-light: rgba(52, 152, 219, 0.15);
+    --border-medium: rgba(52, 152, 219, 0.3);
+    --border-strong: rgba(52, 152, 219, 0.6);
+
+    /* Gölge efektleri */
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-strong: 0 8px 30px rgba(0, 0, 0, 0.3);
+    --shadow-blue: 0 8px 30px rgba(52, 152, 219, 0.3);
+    --shadow-purple: 0 8px 30px rgba(155, 89, 182, 0.3);
+    --shadow-green: 0 8px 30px rgba(46, 204, 113, 0.3);
+
+    /* Gradyanlar */
+    --gradient-blue: linear-gradient(135deg, #3498db, #2980b9);
+    --gradient-purple: linear-gradient(135deg, #9b59b6, #8e44ad);
+    --gradient-green: linear-gradient(135deg, #2ecc71, #27ae60);
+    --gradient-header: linear-gradient(
+        135deg,
+        rgba(52, 152, 219, 0.1),
+        rgba(41, 128, 185, 0.05)
+    );
+
+    /* Geçişler */
+    --transition-fast: all 0.2s ease;
+    --transition-normal: all 0.3s ease;
+
+    /* Köşe yuvarlaklıkları */
+    --radius-small: 4px;
+    --radius-medium: 12px;
+    --radius-large: 16px;
+    --radius-xl: 24px;
+    --radius-circle: 50%;
+}

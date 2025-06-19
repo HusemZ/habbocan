@@ -23,6 +23,8 @@ class NewsRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('n')
             ->orderBy('n.createdAt', 'DESC')
+            ->andWhere('n.status = :status')
+            ->setParameter('status', 'published')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
@@ -37,6 +39,8 @@ class NewsRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('n')
             ->andWhere('n.isPinned = :val')
             ->setParameter('val', true)
+            ->andWhere('n.status = :status')
+            ->setParameter('status', 'published')
             ->orderBy('n.createdAt', 'DESC')
             ->getQuery()
             ->getResult()

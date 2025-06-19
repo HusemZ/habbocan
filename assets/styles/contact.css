@@ -1,0 +1,232 @@
+.habbo-contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    color: #a5b1d6;
+}
+
+.habbo-contact-container .page-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #1a2545;
+    padding-bottom: 15px;
+}
+
+.habbo-contact-container .page-header h1 {
+    color: #3498db;
+    font-weight: 700;
+}
+
+.habbo-contact-container .content-section {
+    background-color: #18233f;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.habbo-contact-container .section-intro {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.habbo-contact-container .intro-text {
+    flex: 3;
+    min-width: 300px;
+}
+
+.habbo-contact-container .intro-image {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.habbo-contact-container .intro-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.habbo-contact-container .lead {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #a5b1d6;
+    margin-bottom: 15px;
+}
+
+.habbo-contact-container h2 {
+    color: #3498db;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a2545;
+}
+
+.habbo-contact-container .brand-title {
+    color: #3498db;
+    border-bottom: none;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-align: left;
+    padding-bottom: 0;
+}
+
+.habbo-contact-container .section-contact-info {
+    margin-bottom: 40px;
+}
+
+.habbo-contact-container .contact-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.habbo-contact-container .contact-card {
+    flex: 1;
+    min-width: 250px;
+    background-color: #111a39;
+    border-radius: 8px;
+    border: 2px solid #1a2545;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.habbo-contact-container .contact-card:hover {
+    transform: translateY(-5px);
+    border-color: #3498db;
+}
+
+.habbo-contact-container .contact-icon {
+    font-size: 2.5rem;
+    color: #3498db;
+    background-color: rgba(52, 152, 219, 0.1);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.habbo-contact-container .contact-details h3 {
+    color: #ffffff;
+    margin-bottom: 8px;
+    font-size: 1.2rem;
+}
+
+.habbo-contact-container .contact-link {
+    color: #3498db;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.habbo-contact-container .contact-link:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.habbo-contact-container .section-form {
+    margin-bottom: 40px;
+}
+
+.habbo-contact-container .contact-form {
+    background-color: #111a39;
+    border-radius: 8px;
+    border: 2px solid #1a2545;
+    padding: 30px;
+}
+
+.habbo-contact-container .form-group {
+    margin-bottom: 25px;
+}
+
+.habbo-contact-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.habbo-contact-container .form-control {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #18233f;
+    border: 1px solid #1a2545;
+    border-radius: 6px;
+    color: #a5b1d6;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.habbo-contact-container .form-control:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3);
+}
+
+.habbo-contact-container textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.habbo-contact-container .btn-primary {
+    background-color: #3498db;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.habbo-contact-container .btn-primary:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.habbo-contact-container .section-conclusion {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.habbo-contact-container .conclusion-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.habbo-contact-container .text-center {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .habbo-contact-container .section-intro {
+        flex-direction: column;
+    }
+
+    .habbo-contact-container .contact-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .habbo-contact-container .contact-icon {
+        margin-bottom: 15px;
+    }
+
+    .habbo-contact-container .contact-details {
+        text-align: center;
+    }
+
+    .habbo-contact-container .brand-title {
+        text-align: center;
+    }
+}
