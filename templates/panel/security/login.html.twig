@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habbocan Panel</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('styles/panel/login.css') }}">
+</head>
+<body>
+<div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="card-header">
+            <div class="icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4>Habbocan Panel</h4>
+        </div>
+        <div class="card-body">
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="post" action="{{ path('panel_login') }}">
+                <div class="form-group">
+                    <label for="username" class="form-label">Kullanıcı Adı</label>
+                    <div style="position: relative;">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" name="username" id="username"
+                               class="form-control" required autofocus
+                               placeholder="Kullanıcı adınızı girin">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="panel_password" class="form-label">Panel Şifresi</label>
+                    <div class="password-group" style="position: relative;">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" name="panel_password" id="panel_password"
+                               class="form-control" required
+                               placeholder="Şifrenizi girin">
+                        <button type="button" class="toggle-password" tabindex="-1">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>Giriş Yap</span>
+                </button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleButton = document.querySelector('.toggle-password');
+        const passwordInput = document.querySelector('#panel_password');
+        const loginForm = document.querySelector('form');
+
+        toggleButton.addEventListener('click', function () {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-eye');
+            icon.classList.toggle('fa-eye-slash');
+        });
+
+        document.addEventListener('keydown', function (e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                loginForm.submit();
+            }
+        });
+    });
+
+</script>
+</body>
+</html>

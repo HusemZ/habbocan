@@ -1,0 +1,297 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="habbo-about-us-container">
+        <div class="page-header">
+            <h1>Hakkımızda</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="section-intro">
+                <div class="intro-text">
+                    <h2 class="brand-title">Habbocan — Habbo'nun Kalbi</h2>
+                    <p class="lead">Habbocan, Habbo topluluğunun tam kalbinde yer alan, oyunculara özel en kapsamlı ve güvenilir rehber platformudur. Burada, Habbo'nun tüm dünyasını keşfederken ihtiyaç duyacağınız tüm bilgileri en doğru ve anlaşılır şekilde bulabilirsiniz.</p>
+                    <p class="lead">Sadece bir bilgi kaynağı değil, aynı zamanda oyuncuların bir araya geldiği, sorularına cevap bulduğu ve birlikte büyüdüğü bir platformuz. Habbocan, Habbo deneyiminizi bir üst seviyeye taşımak için tasarlandı — çünkü biz biliyoruz ki Habbo'nun kalbi, oyuncularıyla atar.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="{{ asset('images/logo/logo.png') }}" alt="Habbocan - Habbo'nun Kalbi">
+                </div>
+            </div>
+
+            <div class="section-about-us">
+                <h2>Hakkımızda</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="about-text">
+                            <p>Habbocan, Habbo dünyasındaki yolculuğunuzu daha keyifli ve bilgilendirici bir hale getirmek amacıyla kurulmuştur. Amacımız; yeni başlayanlardan deneyimli oyunculara kadar tüm kullanıcılar için rehberler, ipuçları ve güncel bilgileri bir arada sunmaktır.</p>
+                            <p>Sitemizde, Habbo'nun temel özelliklerinden ileri düzey stratejilere kadar geniş kapsamlı içerikler yer almaktadır. Tüm yazılarımız, oyuncu deneyimini geliştirmek ve topluluğumuzu güçlendirmek amacıyla özenle hazırlanır.</p>
+                            <p>Habbocan, yalnızca bir rehber kaynağı değil; aynı zamanda oyuncuların katkısıyla büyüyen bir topluluk platformudur. Hep birlikte daha güçlü ve bilgilendirici bir yapı oluşturmayı hedefliyoruz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-values">
+                <h2>Değerlerimiz</h2>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="{{ asset('images/about/BR967.png') }}" alt="Habbo Doğruluk Rozeti">
+                        </div>
+                        <h3>Doğruluk</h3>
+                        <p>Tüm bilgilerimiz resmi kaynaklardan alınmış ve doğrulanmıştır.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="{{ asset('images/about/IT697.png') }}" alt="Habbo Topluluk Rozeti">
+                        </div>
+                        <h3>Topluluk</h3>
+                        <p>Oyuncular arasındaki bağları güçlendirmek en önemli önceliğimizdir.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="{{ asset('images/about/ES950.png') }}" alt="Habbo Yaratıcılık Rozeti">
+                        </div>
+                        <h3>Yaratıcılık</h3>
+                        <p>Habbo dünyasında yaratıcı fikirleri destekler ve paylaşırız.</p>
+                    </div>
+
+                    <div class="value-item">
+                        <div class="value-icon">
+                            <img src="{{ asset('images/about/FI189.png') }}" alt="Habbo Yardımseverlik Rozeti">
+                        </div>
+                        <h3>Yardımseverlik</h3>
+                        <p>Her zaman oyunculara yardımcı olmak için buradayız.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-join-us">
+                <h2>Bize Katılın</h2>
+                <div class="join-content">
+                    <p>Habbocan ekibine katılmak, içeriklere katkıda bulunmak veya önerilerinizi paylaşmak isterseniz, bizimle iletişime geçmekten çekinmeyin. Tüm oyuncuların katkısı, platformumuzu daha güçlü ve kapsamlı hale getirir.</p>
+                    <div class="cta-button">
+                        <a href="{{ path('app_contact') }}" class="btn btn-primary">İletişime Geç</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .habbo-about-us-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #a5b1d6;
+        }
+
+        .habbo-about-us-container .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #1a2545;
+            padding-bottom: 15px;
+        }
+
+        .habbo-about-us-container .page-header h1 {
+            color: #3498db;
+            font-weight: 700;
+        }
+
+        .habbo-about-us-container .content-section {
+            background-color: #18233f;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .habbo-about-us-container .section-intro {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .habbo-about-us-container .intro-text {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .habbo-about-us-container .intro-image {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .habbo-about-us-container .intro-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .habbo-about-us-container .lead {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #a5b1d6;
+            margin-bottom: 15px;
+        }
+
+        .habbo-about-us-container h2 {
+            color: #3498db;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a2545;
+        }
+
+        .habbo-about-us-container .brand-title {
+            color: #3498db;
+            border-bottom: none;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-align: left;
+            padding-bottom: 0;
+        }
+
+        .habbo-about-us-container .section-about-us {
+            margin-bottom: 40px;
+        }
+
+        .habbo-about-us-container .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .habbo-about-us-container .about-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .habbo-about-us-container .about-text p {
+            line-height: 1.6;
+        }
+
+        .habbo-about-us-container .section-values {
+            margin-bottom: 40px;
+        }
+
+        .habbo-about-us-container .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .habbo-about-us-container .value-item {
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+            padding: 25px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .habbo-about-us-container .value-item:hover {
+            transform: translateY(-5px);
+            border-color: #3498db;
+        }
+
+        .habbo-about-us-container .value-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .habbo-about-us-container .value-item h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .habbo-about-us-container .value-item p {
+            color: #a5b1d6;
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .habbo-about-us-container .section-join-us {
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .habbo-about-us-container .join-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .habbo-about-us-container .join-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .habbo-about-us-container .cta-button {
+            margin-top: 20px;
+        }
+
+        .habbo-about-us-container .btn-primary {
+            background-color: #3498db;
+            border-color: #3498db;
+            color: #ffffff;
+            padding: 10px 25px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .habbo-about-us-container .btn-primary:hover {
+            background-color: #2980b9;
+            border-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .habbo-about-us-container .section-intro {
+                flex-direction: column;
+            }
+
+            .habbo-about-us-container .about-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .habbo-about-us-container .about-icon {
+                margin-bottom: 15px;
+            }
+
+            .habbo-about-us-container .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .habbo-about-us-container .brand-title {
+                text-align: center;
+            }
+        }
+    </style>
+{% endblock %}

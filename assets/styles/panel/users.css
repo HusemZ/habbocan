@@ -1,0 +1,62 @@
+.table-responsive {
+    overflow-x: auto;
+}
+
+table.dataTable {
+    width: 100% !important;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+table.dataTable thead th {
+    position: relative;
+    vertical-align: middle;
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+}
+
+table.dataTable tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.badge {
+    font-size: 80%;
+    font-weight: 500;
+    padding: 0.3em 0.6em;
+    margin-right: 0.2em;
+}
+
+.dataTables_filter,
+.dataTables_length {
+    margin-bottom: 1rem;
+}
+
+.dataTables_info,
+.dataTables_paginate {
+    margin-top: 1rem;
+}
+
+.page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.page-link {
+    color: var(--primary);
+}
+
+.btn-group-sm > .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.btn-group .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+.dataTables_processing {
+    background-color: rgba(255,255,255,0.9);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}

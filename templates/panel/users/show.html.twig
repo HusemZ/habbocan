@@ -1,0 +1,266 @@
+{% extends 'panel/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="page-header mb-5">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h3 class="page-header-title">{{ page_title }}</h3>
+                </div>
+                <div class="col-auto">
+                    <div class="btn-group">
+                        <a href="{{ path('panel_users_edit', {'id': user.id}) }}" class="btn btn-primary">
+                            <i class="fas fa-edit"></i> Düzenle
+                        </a>
+                        <a href="{{ path('panel_users_index') }}" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Listeye Dön
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Kullanıcı Bilgileri</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="profile-user-avatar text-center mb-4">
+                            <div class="avatar-placeholder">
+                                <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ app.user.username }}&size=l&direction=4&head_direction=4&gesture=sml"
+                                     alt="Avatar" class="img-fluid rounded-circle">
+                            </div>
+                        </div>
+
+                        <table class="table table-borderless">
+                            <tbody>
+                            <tr>
+                                <th>Kullanıcı Adı</th>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Hesap Durumu</th>
+                                <td>
+                                    {% if user.isActive %}
+                                        <span class="badge bg-success">Aktif</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Pasif</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Yasaklı mı?</th>
+                                <td>
+                                    {% if user.isBlocked %}
+                                        <span class="badge bg-danger">Evet</span>
+                                    {% else %}
+                                        <span class="badge bg-success">Hayır</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Panel Şifresi</th>
+                                <td>
+                                    {% if user.panelPassword %}
+                                        <span class="badge bg-success">Tanımlanmış</span>
+                                    {% else %}
+                                        <span class="badge bg-danger">Tanımlanmamış</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Son Giriş Tarihi</th>
+                                <td>
+                                    {% if user.lastLogin %}
+                                        {{ user.lastLogin|date('d.m.Y H:i') }}
+                                    {% else %}
+                                        <span class="badge bg-secondary">Henüz giriş yapmamış</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Oluşturulma Tarihi</th>
+                                <td>{{ user.createdAt|date('d.m.Y H:i') }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Kullanıcı Rolleri</h5>
+                    </div>
+                    <div class="card-body">
+                        {% if roles|length > 0 %}
+                            <div class="role-badges">
+                                {% set roleColors = {
+                                    'ROLE_DEVELOPER': 'bg-black text-white',
+                                    'ROLE_ADMIN': 'bg-danger',
+                                    'ROLE_MODERATOR': 'bg-info',
+                                    'ROLE_HEAD_ARCHITECT': 'bg-purple',
+                                    'ROLE_HEAD_EDITOR': 'bg-primary',
+                                    'ROLE_ARCHITECT': 'bg-purple-light',
+                                    'ROLE_EDITOR': 'bg-primary-light',
+                                    'ROLE_MOBINATOR': 'bg-success-light',
+                                    'ROLE_GRAPHICER': 'bg-pink',
+                                    'ROLE_HEAD_IN_GAME_HELPER': 'bg-warning-light text-dark',
+                                    'ROLE_IN_GAME_HELPER': 'bg-indigo',
+                                    'ROLE_USER': 'bg-secondary'
+                                } %}
+                                {% set roleNames = {
+                                    'ROLE_DEVELOPER': 'Geliştirici',
+                                    'ROLE_ADMIN': 'Yönetici',
+                                    'ROLE_MODERATOR': 'Moderatör',
+                                    'ROLE_HEAD_ARCHITECT': 'Baş Mimar',
+                                    'ROLE_HEAD_EDITOR': 'Baş Haberci',
+                                    'ROLE_ARCHITECT': 'Mimar',
+                                    'ROLE_EDITOR': 'Haberci',
+                                    'ROLE_MOBINATOR': 'Mobinator',
+                                    'ROLE_GRAPHICER': 'Grafiker',
+                                    'ROLE_HEAD_IN_GAME_HELPER': 'Baş Oyun İçi Destek',
+                                    'ROLE_IN_GAME_HELPER': 'Oyun İçi Destek',
+                                    'ROLE_USER': 'Kullanıcı'
+                                } %}
+                                {% set rolePriority = {
+                                    'ROLE_DEVELOPER': 12,
+                                    'ROLE_ADMIN': 11,
+                                    'ROLE_MODERATOR': 10,
+                                    'ROLE_HEAD_EDITOR': 9,
+                                    'ROLE_HEAD_ARCHITECT': 8,
+                                    'ROLE_HEAD_IN_GAME_HELPER': 7,
+                                    'ROLE_EDITOR': 6,
+                                    'ROLE_ARCHITECT': 5,
+                                    'ROLE_MOBINATOR': 4,
+                                    'ROLE_GRAPHICER': 3,
+                                    'ROLE_IN_GAME_HELPER': 2,
+                                    'ROLE_USER': 1
+                                } %}
+
+
+                                {% set sortedRoles = [] %}
+                                {% for role in roles %}
+                                    {% set priority = rolePriority[role] ?? 999 %}
+                                    {% set sortedRoles = sortedRoles|merge([{'role': role, 'priority': priority}]) %}
+                                {% endfor %}
+
+                                {% set sortedRoles = sortedRoles|sort((a, b) => b.priority <=> a.priority) %}
+
+                                <div class="d-flex flex-wrap gap-2">
+                                    {% for roleData in sortedRoles %}
+                                        {% set role = roleData.role %}
+                                        {% set badgeClass = roleColors[role] ?? 'bg-secondary' %}
+                                        {% set displayName = roleNames[role] ?? role|replace({'ROLE_': ''})|title %}
+
+                                        <span class="badge {{ badgeClass }} role-badge">
+                                            {{ displayName }}
+                                        </span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">
+                                Bu kullanıcıya atanmış rol bulunmuyor.
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="card mt-4">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Aktivite Bilgileri</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            Kullanıcı aktivite bilgileri henüz mevcut değil.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .profile-user-avatar {
+            width: 100%;
+            height: 150px;
+            background-color: #98d6ff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .avatar-placeholder {
+            width: 140px;
+            height: 140px;
+            background-color: #3498db;
+            color: white;
+            font-size: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .avatar-placeholder img {
+            height: 100%;
+        }
+
+        .role-badge {
+            font-size: 0.875rem;
+            padding: 8px 12px;
+            margin: 3px;
+        }
+
+        .bg-purple {
+            background-color: #6f42c1;
+            color: white;
+        }
+
+        .bg-purple-light {
+            background-color: #a887d9;
+            color: white;
+        }
+
+        .bg-primary-light {
+            background-color: #609ae3;
+            color: white;
+        }
+
+        .bg-success-light {
+            background-color: #4cb577;
+            color: white;
+        }
+
+        .bg-warning-light {
+            background-color: #ffc107;
+            color: #212529;
+        }
+
+        .bg-indigo {
+            background-color: #6610f2;
+            color: white;
+        }
+
+        .bg-pink {
+            background-color: #e83e8c;
+            color: white;
+        }
+
+        .gap-2 {
+            gap: 0.5rem;
+        }
+    </style>
+{% endblock %}

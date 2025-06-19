@@ -1,0 +1,409 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="habbo-ambassadors-container">
+        <div class="page-header">
+            <h1>Habbo Büyükelçileri</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="section-intro">
+                <div class="intro-text">
+                    <p class="lead">
+                        Büyükelçiler, Habbo topluluğunun deneyimli ve yardımsever üyeleridir. Yeni oyunculara destek olmak, topluluğu tanıtmak ve genel olarak otelde düzenin sağlanmasına yardımcı olmakla görevlidirler. Ayrıca, resmi oyun odalarında engellenmezler ve güvenli bir oyun ortamı oluşturmak için çalışan personelimize destek verirler.
+                    </p>
+                </div>
+                <div class="intro-image">
+                    <img src="{{ asset('images/habbo/ambassadors/Ambassadorsbadge.png') }}" alt="Habbo Büyükelçileri">
+                </div>
+            </div>
+
+            <div class="section-current-ambassadors">
+                <h2>Şu Anda Habbo Türkiye Büyükelçileri Kimler?</h2>
+                <p>Habbo Türkiye'de şu anda aktif 4 Büyükelçi bulunmaktadır ve her biri kendine ait "Habbo Büyükelçisi" rozeti taşır:</p>
+
+                <div class="ambassadors-grid">
+                    {% for ambassador in ambassadors %}
+                        <div class="ambassador-card">
+                            <div class="ambassador-avatar">
+                                <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ ambassador.name }}&action=std&direction=2&head_direction=3&img_format=png&gesture=sml&headonly=0&size=b" alt="Ambassador Avatar">
+                            </div>
+                            <div class="ambassador-info">
+                                <h3>{{ ambassador.name }}</h3>
+                                <span class="ambassador-badge">{{ ambassador.role }}</span>
+                                <p class="ambassador-start-date">Göreve Başlama Tarihi: <br> {{ ambassador.start_date }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="section-duties">
+                <h2>Büyükelçilerin Görev ve Yetkileri</h2>
+                <ul class="duties-list">
+                    <li>Sadece yeni kullanıcıların bulunduğu salonlara erişebilirler.</li>
+                    <li>Yeni oyuncuları tanıyarak, oyuna alışmalarına yardımcı olurlar.</li>
+                    <li>Açık odalarda oyuncuları kötü davranışlarından dolayı uyarabilir, gerekirse odadan atabilir veya sessize alabilirler.</li>
+                    <li>Genel otel düzeninin korunmasında personelimize destek sağlarlar.</li>
+                </ul>
+            </div>
+
+            <div class="section-head-ambassador">
+                <h2>Baş Büyükelçi ile Diğer Büyükelçiler Arasındaki Fark Nedir?</h2>
+                <div class="info-box">
+                    <div class="info-box-icon">
+                        <img src="{{ asset('images/habbo/ambassadors/AMBX.png') }}" alt="Tecrübeli">
+                    </div>
+                    <div class="info-box-content">
+                        <p>Baş Büyükelçi, diğer büyükelçilerin koordinasyonundan ve görev dağılımından sorumludur.</p>
+                        <p><strong>Habbo Türkiye Baş Büyükelçisi:</strong> bektaş55</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-selection">
+                <h2>Büyükelçiler Nasıl Seçilir?</h2>
+                <p>Büyükelçi seçimi otelden otele değişiklik gösterir.</p>
+                <p>Genellikle;</p>
+
+                <div class="selection-criteria-grid">
+                    <div class="criteria-item">
+                        <div class="criteria-icon">
+                           <img src="{{ asset('images/habbo/ambassadors/NB077.png') }}" alt="Tecrübeli">
+                        </div>
+                        <div class="criteria-content">
+                            <h3>Tecrübeli</h3>
+                        </div>
+                    </div>
+
+                    <div class="criteria-item">
+                        <div class="criteria-icon">
+                            <img src="{{ asset('images/habbo/ambassadors/NL825.png') }}" alt="Tecrübeli">
+                        </div>
+                        <div class="criteria-content">
+                            <h3>Yardımsever</h3>
+                        </div>
+                    </div>
+
+                    <div class="criteria-item">
+                        <div class="criteria-icon">
+                            <img src="{{ asset('images/habbo/ambassadors/ITG33.png') }}" alt="Tecrübeli">
+                        </div>
+                        <div class="criteria-content">
+                            <h3>Aktif</h3>
+                        </div>
+                    </div>
+
+                    <div class="criteria-item">
+                        <div class="criteria-icon">
+                            <img src="{{ asset('images/habbo/ambassadors/NL390.png') }}" alt="Tecrübeli">
+                        </div>
+                        <div class="criteria-content">
+                            <h3>Kurallara uygun</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="selection-note">Habbolar arasından değerlendirilir ve seçilir.</p>
+            </div>
+
+            <div class="section-contact">
+                <h2>Büyükelçilere Nasıl Ulaşabilirim?</h2>
+                <ul class="contact-info-list">
+                    <li>Büyükelçiler, moderasyon ekibi gibi çağrılamazlar.</li>
+                    <li>Aynı odada bulunduklarında onlara sorularınızı yöneltebilirsiniz.</li>
+                    <li>Otel içinde bir sorun yaşarsanız, "Şikayet Et" butonunu kullanmanız önerilir.</li>
+                </ul>
+            </div>
+
+            <div class="section-faq">
+                <h2>Sık Sorulan Sorular</h2>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <img src="{{ asset('images/habbo/ambassadors/AMB.png') }}" alt="Sık Sorulan Sorular">
+                        <h3>Büyükelçi Sayısı Ne Kadar?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Şu anda 4 büyükelçi bulunmaktadır.</p>
+                        <p>İhtiyaca göre bu sayı değişebilir ancak ortalama olarak 6-7 büyükelçi yeterli olmaktadır.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <img src="{{ asset('images/habbo/ambassadors/AMBX.png') }}" alt="Sık Sorulan Sorular">
+                        <h3>Büyükelçilerin Görev Süresi Ne Kadar?</h3>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Büyükelçilik programı sürekli devam eder.</p>
+                        <p>Görevden ayrılan ya da aktif olmayan büyükelçilerin yerine, uygun ve güvenilir yeni adaylar seçilir.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .habbo-ambassadors-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #a5b1d6;
+        }
+
+        .habbo-ambassadors-container .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #1a2545;
+            padding-bottom: 15px;
+        }
+
+        .habbo-ambassadors-container .page-header h1 {
+            color: #3498db;
+            font-weight: 700;
+        }
+
+        .habbo-ambassadors-container .content-section {
+            background-color: #18233f;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .habbo-ambassadors-container .section-intro {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .habbo-ambassadors-container .intro-text {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .habbo-ambassadors-container .intro-image {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .habbo-ambassadors-container .intro-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .habbo-ambassadors-container .lead {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #a5b1d6;
+        }
+
+        .habbo-ambassadors-container h2 {
+            color: #3498db;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a2545;
+        }
+
+        .habbo-ambassadors-container .ambassadors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .habbo-ambassadors-container .ambassador-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .habbo-ambassadors-container .ambassador-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: #3498db;
+        }
+
+        .habbo-ambassadors-container .ambassador-avatar {
+            position: relative;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .habbo-ambassadors-container .ambassador-info h3 {
+            margin: 0 0 10px;
+            color: #ffffff;
+        }
+
+        .habbo-ambassadors-container .ambassador-badge {
+            background-color: #3498db;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        .habbo-ambassadors-container .ambassador-start-date {
+            font-size: 0.9rem;
+            color: #a5b1d6;
+            margin-top: 10px;
+        }
+
+        .habbo-ambassadors-container .duties-list {
+            padding-left: 20px;
+        }
+
+        .habbo-ambassadors-container .duties-list li {
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        .habbo-ambassadors-container .info-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #111a39;
+            border: 2px solid #1a2545;
+            margin-bottom: 30px;
+        }
+
+        .habbo-ambassadors-container .info-box-icon {
+            display: flex;
+            color: #f39c12;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .habbo-ambassadors-container .info-box-content p {
+            margin-bottom: 10px;
+        }
+
+        .habbo-ambassadors-container .selection-criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .habbo-ambassadors-container .criteria-item {
+            padding: 20px;
+            background-color: #111a39;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px solid #1a2545;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .habbo-ambassadors-container .criteria-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-color: #3498db;
+        }
+
+        .habbo-ambassadors-container .criteria-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .habbo-ambassadors-container .criteria-content h3 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .habbo-ambassadors-container .selection-note {
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        .habbo-ambassadors-container .contact-info-list {
+            padding-left: 20px;
+        }
+
+        .habbo-ambassadors-container .contact-info-list li {
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        .habbo-ambassadors-container .section-faq {
+            margin-top: 40px;
+        }
+
+        .habbo-ambassadors-container .faq-item {
+            background-color: #111a39;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 2px solid #1a2545;
+        }
+
+        .habbo-ambassadors-container .faq-question {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 1px solid #1a2545;
+        }
+
+        .habbo-ambassadors-container .faq-question i {
+            font-size: 1.5rem;
+            color: #3498db;
+        }
+
+        .habbo-ambassadors-container .faq-question h3 {
+            margin: 0;
+            color: #ffffff;
+        }
+
+        .habbo-ambassadors-container .faq-answer {
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .habbo-ambassadors-container .section-intro {
+                flex-direction: column;
+            }
+
+            .habbo-ambassadors-container .ambassadors-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .habbo-ambassadors-container .selection-criteria-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .habbo-ambassadors-container .info-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .habbo-ambassadors-container .info-box-icon {
+                margin-bottom: 10px;
+            }
+
+            .habbo-ambassadors-container .faq-question {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+{% endblock %}

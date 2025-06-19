@@ -1,0 +1,169 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-4">{{ page_title }}</h1>
+                <p class="lead mb-5">Platformumuzun arkasındaki harika ekip ile tanışın. Her bir üye, size en iyi deneyimi sunmak için çalışıyor.</p>
+            </div>
+        </div>
+
+        {% for group_name, members in team_groups %}
+            {% if members|length > 0 %}
+                <div class="team-group mb-5">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="team-header">
+                                <div class="team-icon">
+                                    {% if group_name == 'Yöneticiler' %}
+                                        <img src="{{ asset('images/habbo/team/yonetim.png') }}" alt="Yönetim Ekibi">
+                                    {% elseif group_name == 'Moderatörler' %}
+                                        <img src="{{ asset('images/habbo/team/moderator.png') }}" alt="Moderatör Ekibi">
+                                    {% elseif group_name == 'Direktör' %}
+                                        <img src="{{ asset('images/habbo/team/direktor.png') }}" alt="Direktör Ekibi">
+                                    {% else %}
+                                        <img src="{{ asset('images/habbo/team/team.png') }}" alt="Ekip">
+                                    {% endif %}
+                                </div>
+                                <h2 class="team-group-title">{{ group_name }}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for member in members %}
+                            <div class="col-md-4 mb-4">
+                                <div class="team-card">
+                                    <div class="team-role-badge">
+                                        {% if group_name == 'Yöneticiler' %}
+                                            Yönetici
+                                        {% elseif group_name == 'Moderatörler' %}
+                                            Moderatör
+                                        {% elseif group_name == 'Direktör' %}
+                                            Direktör
+                                        {% else %}
+                                            Ekip Üyesi
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body text-center">
+                                        <div class="team-member-avatar">
+                                            <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ member.username }}&action=std&direction=2&head_direction=3&img_format=png&gesture=sml&headonly=0&size=m" alt="{{ member.username }} Avatar">
+                                        </div>
+                                        <h3 class="team-member-name">{{ member.username }}</h3>
+                                        <div class="team-member-motto">
+                                            {% if group_name == 'Yöneticiler' %}
+                                                "Yönetici motto buraya gelecek!"
+                                            {% elseif group_name == 'Moderatörler' %}
+                                                "Moderatör motto buraya gelecek!"
+                                            {% elseif group_name == 'Direktör' %}
+                                                "Direktör motto buraya gelecek!"
+                                            {% else %}
+                                                "Ekip üyesi motto buraya gelecek!"
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle me-2"></i>
+                Henüz ekip üyesi bulunmamaktadır.
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .team-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            background-color: #111a39;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        .team-icon {
+            width: 48px;
+            height: 48px;
+            margin-right: 15px;
+        }
+        
+        .team-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .team-group-title {
+            font-weight: 600;
+            color: #a5b1d6;
+            margin: 0;
+            font-size: 1.75rem;
+        }
+
+        .team-card {
+            transition: all 0.3s ease;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #111a39;
+            border: 2px solid #1a2545;
+            position: relative;
+            padding: 20px;
+            height: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: #3498db;
+        }
+        
+        .team-role-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .team-member-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            overflow: hidden;
+        }
+
+        .team-member-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .team-member-name {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #a5b1d6;
+        }
+
+        .team-member-motto {
+            color: #a5b1d6;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+    </style>
+{% endblock %}

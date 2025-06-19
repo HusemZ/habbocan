@@ -1,0 +1,356 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="habbo-credit-container">
+        <div class="page-header">
+            <h1>Habbo Kredisi</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="section-intro">
+                <div class="intro-text">
+                    <p class="lead">
+                        Habbo Kredisi, Habbo Hotel'de kullanılan sanal para birimidir. Bu krediler
+                        sayesinde oyuncular; odalarını dekore etmek, Habbo Kulübü üyeliği satın
+                        almak, evcil hayvanlar edinmek, kıyafet almak ve daha birçok özel ürüne
+                        erişmek gibi imkanlara sahip olur.
+                    </p>
+                </div>
+                <div class="intro-image">
+                    <img src="{{ asset('images/habbo/credit/coins.png') }}" alt="Habbo Kredisi">
+                </div>
+            </div>
+
+            <div class="section-info-card">
+                <div class="info-card">
+                    <div class="info-card-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <div class="info-card-content">
+                        <h3>Habbo Oynamak İçin Kredi Gerekli mi?</h3>
+                        <p>Hayır. Habbo'ya katılmak tamamen ücretsizdir. Ancak oyun içindeki bazı
+                            ekstra özellikler, ürünler veya özelleştirmeler için kredi satın almanız
+                            gerekebilir. Bu tamamen oyuncunun isteğine bağlıdır.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-features">
+                <h2>Habbo Kredileri ile Neler Alabilirim?</h2>
+                <p>Habbo'da krediler sayesinde erişebileceğiniz bazı içerikler şunlardır:</p>
+
+                <div class="credit-items-grid">
+                    <div class="credit-item">
+                        <div class="credit-item-icon">
+                            <img src="{{ asset('images/habbo/credit/v22_2.gif') }}" alt="Kredi" class="rounded-image">
+                        </div>
+                        <div class="credit-item-content">
+                            <h3>Mobilyalar (Mobiler)</h3>
+                            <p>Odanızı dilediğiniz gibi tasarlamak için çeşitli mobilyalar satın alabilirsiniz. Tüm ürünlere oyun içindeki Mağaza bölümünden ulaşabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="credit-item">
+                        <div class="credit-item-icon">
+                            <img src="{{ asset('images/habbo/credit/me_HC_active.gif') }}" alt="Kredi" class="rounded-image">
+                        </div>
+                        <div class="credit-item-content">
+                            <h3>HC (Habbo Kulübü) Üyeliği</h3>
+                            <p>14 günlük ya da daha uzun süreli Habbo Kulübü üyelikleri satın alarak özel kıyafetler, rozetler ve avantajlara erişebilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="credit-item">
+                        <div class="credit-item-icon">
+                            <img src="{{ asset('images/habbo/credit/WRD16.png') }}" alt="Kredi" class="rounded-image">
+                        </div>
+                        <div class="credit-item-content">
+                            <h3>Habbo Değişim</h3>
+                            <p>Kredilerinizi özel kredi mobilerine çevirerek diğer oyuncularla takas yapabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="credit-item">
+                        <div class="credit-item-icon">
+                            <img src="{{ asset('images/habbo/credit/me_outfit_active.gif') }}" alt="Kredi" class="rounded-image">
+                        </div>
+                        <div class="credit-item-content">
+                            <h3>Kıyafetler</h3>
+                            <p>Karakterinize yeni bir tarz kazandırmak için Mağaza'dan kıyafetler satın alabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="credit-item">
+                        <div class="credit-item-icon">
+                            <img src="{{ asset('images/habbo/credit/FR711.png') }}" alt="Kredi" class="rounded-image">
+                        </div>
+                        <div class="credit-item-content">
+                            <h3>Evcil Hayvanlar ve Aksesuarlar</h3>
+                            <p>Kendi sanal evcil hayvanınızı edinebilir, onun için aksesuarlar alabilirsiniz.</p>
+                        </div>
+                    </div>
+
+                    <div class="credit-item">
+                        <div class="credit-item-icon">
+                            <img src="{{ asset('images/habbo/credit/toolbar_04.gif') }}" alt="Kredi" class="rounded-image">
+                        </div>
+                        <div class="credit-item-content">
+                            <h3>Grup Mobileri</h3>
+                            <p>Grup bayrakları, afişler ve benzeri özel ürünleri satın alarak grubunuzu daha da kişiselleştirebilirsiniz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-purchase">
+                <h2>Kredi Satın Alma</h2>
+                <p>Habbo kredileri, oyun içindeki Mağaza üzerinden satın alınabilir. Kredi alımı
+                    genellikle gerçek para ile yapılır ve bazen özel paketlerle birlikte bonus
+                    elmaslar veya hediyeler de verilir.</p>
+            </div>
+
+            <div class="section-warning">
+                <h2>Dikkat Edilmesi Gerekenler</h2>
+                <div class="warning-content">
+                    <div class="warning-icon">
+                        <img src="{{ asset('images/habbo/toolbar_08.gif') }}" alt="Habbo Danger" class="rounded-image">
+                    </div>
+                    <div class="warning-text">
+                        <ul>
+                            <li>Krediler sadece resmi Habbo mağazasından alınmalıdır. Üçüncü parti siteler dolandırıcılık riski taşır.</li>
+                            <li>Habbo'da kredi kazanımı genellikle sadece satın alma ile mümkündür. Ancak nadiren etkinliklerden ödül olarak da verilebilir.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-more-info">
+                <p>Daha fazla bilgi için resmi <a href="https://www.habbo.com.tr/shop" target="_blank" class="more-info-link"> Habbo Alışveriş</a>  sayfasını ziyaret edebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .habbo-credit-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #a5b1d6;
+        }
+
+        .habbo-credit-container .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #1a2545;
+            padding-bottom: 15px;
+        }
+
+        .habbo-credit-container .page-header h1 {
+            color: #3498db;
+            font-weight: 700;
+        }
+
+        .habbo-credit-container .content-section {
+            background-color: #18233f;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .habbo-credit-container .section-intro {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .habbo-credit-container .intro-text {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .habbo-credit-container .intro-image {
+            flex: 1;
+            min-width: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .habbo-credit-container .intro-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .habbo-credit-container .lead {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #a5b1d6;
+        }
+
+        .habbo-credit-container h2 {
+            color: #3498db;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a2545;
+        }
+
+        .habbo-credit-container .section-info-card {
+            margin-bottom: 40px;
+        }
+
+        .habbo-credit-container .info-card {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #111a39;
+            border: 2px solid #1a2545;
+        }
+
+        .habbo-credit-container .info-card-icon {
+            color: #3498db;
+            font-size: 2.5rem;
+        }
+
+        .habbo-credit-container .info-card-content h3 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .habbo-credit-container .credit-items-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .habbo-credit-container .credit-item {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #111a39;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .habbo-credit-container .credit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: #1a2545;
+        }
+
+        .habbo-credit-container .credit-item-icon {
+            font-size: 2.5rem;
+            color: #f1c40f;
+            margin-right: 10px;
+        }
+
+        .habbo-credit-container .credit-item-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .habbo-credit-container .section-purchase {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+        }
+
+        .habbo-credit-container .section-warning {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+        }
+
+        .habbo-credit-container .warning-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .habbo-credit-container .warning-icon {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            flex-shrink: 0;
+        }
+
+        .habbo-credit-container .warning-text ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .habbo-credit-container .warning-text li {
+            margin-bottom: 10px;
+            list-style-type: disc;
+        }
+
+        .habbo-credit-container .section-more-info {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .habbo-credit-container .more-info-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .habbo-credit-container .more-info-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 992px) {
+            .habbo-credit-container .credit-items-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .habbo-credit-container .section-intro {
+                flex-direction: column;
+            }
+
+            .habbo-credit-container .info-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .habbo-credit-container .info-card-icon {
+                margin-bottom: 10px;
+            }
+
+            .habbo-credit-container .credit-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .habbo-credit-container .credit-item-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .habbo-credit-container .warning-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .habbo-credit-container .warning-icon {
+                margin-bottom: 10px;
+            }
+
+        }
+    </style>
+{% endblock %}

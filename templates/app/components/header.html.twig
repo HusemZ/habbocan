@@ -1,0 +1,43 @@
+<header class="app-header">
+    <div class="container">
+        <div class="header-content">
+            <div class="header-welcome">
+                {% if app.user %}
+                    <p class="welcome-text">Tekrar Hoş geldin <span class="username">{{ app.user.username }}</span></p>
+                {% else %}
+                    <p class="welcome-text">Hoş geldin, lütfen giriş yap veya kayıt ol.</p>
+                {% endif %}
+            </div>
+
+            <div class="header-auth">
+                {% if app.user %}
+                    <div class="user-dropdown">
+                        <div class="user-info">
+                            <div class="avatar-container" id="userAvatarToggle">
+                                <img
+                                    src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ app.user.username }}&size=b&direction=4&head_direction=4&gesture=sml"
+                                    alt="{{ app.user.username }}"
+                                    class="user-avatar"
+                                >
+                            </div>
+                            <span class="dropdown-username">{{ app.user.username }}</span>
+                        </div>
+                        <div class="dropdown-menu" id="userDropdown">
+                            <ul>
+                                <li><a href="{{ path('app_profile') }}"><i class="fas fa-user"></i> Profilim</a></li>
+                                <li><a href="#"><i class="fas fa-cog"></i> Ayarlar</a></li>
+                                <li class="separator"></li>
+                                <li><a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="auth-buttons">
+                        <a href="{{ path('app_login') }}" class="btn btn-login">Giriş Yap</a>
+                        <a href="{{ path('app_register') }}" class="btn btn-register">Kayıt Ol</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>

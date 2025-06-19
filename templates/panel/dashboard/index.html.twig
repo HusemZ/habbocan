@@ -1,0 +1,152 @@
+{% extends 'panel/base.html.twig' %}
+
+{% block title %}Panel Dashboard{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0">Dashboard</h1>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-primary h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                    Kullanıcılar</div>
+                                <div class="h5 mb-0 fw-bold text-primary">{{ userCount }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-users fa-2x text-secondary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col">
+                                <div class="text-xs fw-bold text-success text-uppercase mb-1">
+                                    Haberler</div>
+                                <div class="h5 mb-0 fw-bold text-success">250</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-newspaper fa-2x text-secondary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-info h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col">
+                                <div class="text-xs fw-bold text-info text-uppercase mb-1">
+                                    Yorumlar</div>
+                                <div class="h5 mb-0 font-weight-bold text-info">485</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-comments fa-2x text-secondary"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- İçerik Satırı -->
+        <div class="row">
+            <!-- Son Aktiviteler -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Son Aktiviteler</h6>
+                    </div>
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item py-3">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div>
+                                        <h6 class="mb-1 text-dark">Yeni kullanıcı kaydı</h6>
+                                        <p class="mb-0 text-muted small">Ahmet Yılmaz kullanıcısı sisteme kaydoldu.</p>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill align-self-center">3 saat önce</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-3">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div>
+                                        <h6 class="mb-1 text-dark">Yeni haber eklendi</h6>
+                                        <p class="mb-0 text-muted small">"Symfony ile Web Uygulamaları" başlıklı haber eklendi.</p>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill align-self-center">1 gün önce</span>
+                                </div>
+                            </li>
+                            <li class="list-group-item py-3">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <div>
+                                        <h6 class="mb-1 text-dark">Yeni yorum yapıldı</h6>
+                                        <p class="mb-0 text-muted small">Mehmet Kaya, "PHP Temelleri" içeriğine yorum yaptı.</p>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill align-self-center">2 gün önce</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="btn btn-sm btn-primary d-block">Tümünü Görüntüle</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Yapılacak İşler -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Yapılacak İşler</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="todo1">
+                            <label class="form-check-label" for="todo1">
+                                <span class="text-gray-800 fw-bold">Bekleyen yorumları onayla</span>
+                                <div class="small text-muted">15 yorum onay bekliyor</div>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="todo2">
+                            <label class="form-check-label" for="todo2">
+                                <span class="text-gray-800 fw-bold">Yeni içerik ekle</span>
+                                <div class="small text-muted">Haftalık içerik güncellemesi</div>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="todo3">
+                            <label class="form-check-label" for="todo3">
+                                <span class="text-gray-800 fw-bold">Kullanıcı rollerini düzenle</span>
+                                <div class="small text-muted">Moderatör yetkilerini güncelle</div>
+                            </label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" value="" id="todo4">
+                            <label class="form-check-label" for="todo4">
+                                <span class="text-gray-800 fw-bold">Sistem yedeklemesi yap</span>
+                                <div class="small text-muted">Aylık yedekleme zamanı</div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="#" class="btn btn-sm btn-primary d-block">Tüm Görevleri Yönet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

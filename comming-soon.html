@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Habbocan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background-color: #118ab2;
+            overflow-x: hidden;
+        }
+
+        .pixel-character {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .bubble {
+            animation: bubble-float 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        .bubble:nth-child(2) {
+            animation-delay: 1s;
+        }
+
+        .bubble:nth-child(3) {
+            animation-delay: 2s;
+        }
+
+        @keyframes bubble-float {
+            0% { transform: translateY(20px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateY(-60px); opacity: 0; }
+        }
+
+        .countdown-item {
+            animation: pulse 2s infinite;
+        }
+
+        .countdown-item:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .countdown-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .countdown-item:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .room-bg {
+            background-image: radial-gradient(#60a5fa 2px, transparent 2px);
+            background-size: 30px 30px;
+            animation: move-bg 15s linear infinite;
+        }
+
+        @keyframes move-bg {
+            from { background-position: 0 0; }
+            to { background-position: 30px 30px; }
+        }
+
+        .furniture {
+            transition: transform 0.3s ease;
+        }
+
+        .furniture:hover {
+            transform: translateY(-5px);
+            cursor: pointer;
+        }
+
+        .logo-bounce {
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .furniture-rotate {
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+<div class="min-h-screen flex flex-col">
+    <main class="flex-grow flex items-center justify-center">
+        <div class="relative w-full py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-10 overflow-hidden">
+            <div class="room-bg absolute inset-0 opacity-20"></div>
+
+            <div class="max-w-6xl mx-auto relative z-10 bg-blue-600 rounded-3xl shadow-2xl overflow-hidden">
+                <div class="flex flex-col lg:flex-row">
+                    <div class="text-white p-6 sm:p-8 md:p-12 lg:w-1/2">
+                        <div class="logo-bounce flex items-center mb-8">
+                            <img src="./images/logo.gif" alt="Habbocan Logo"/>
+                        </div>
+
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-6">Çook Yakında!</h2>
+                        <p class="text-lg sm:text-xl mb-6 sm:mb-8">Her şey sizler için. <br> En iyi şekilde geliyoruz!</p>
+
+                        <div class="flex flex-wrap gap-3 sm:gap-4 mb-8">
+                            <div class="countdown-item bg-white text-blue-600 rounded-lg p-3 sm:p-4 text-center w-16 sm:w-20">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold" id="days">00</div>
+                                <div class="text-xs sm:text-sm">Gün</div>
+                            </div>
+                            <div class="countdown-item bg-white text-blue-600 rounded-lg p-3 sm:p-4 text-center w-16 sm:w-20">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold" id="hours">00</div>
+                                <div class="text-xs sm:text-sm">Saat</div>
+                            </div>
+                            <div class="countdown-item bg-white text-blue-600 rounded-lg p-3 sm:p-4 text-center w-16 sm:w-20">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold" id="minutes">00</div>
+                                <div class="text-xs sm:text-sm">Dakika</div>
+                            </div>
+                            <div class="countdown-item bg-white text-blue-600 rounded-lg p-3 sm:p-4 text-center w-16 sm:w-20">
+                                <div class="text-xl sm:text-2xl md:text-3xl font-bold" id="seconds">00</div>
+                                <div class="text-xs sm:text-sm">Saniye</div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center text-center">
+                                <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                <span class="font-bold">Profesyonel Ekip</span>
+                            </div>
+                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center text-center">
+                                <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                                </svg>
+                                <span class="font-bold">Etkinlik Odaları</span>
+                            </div>
+                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center text-center">
+                                <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-bold">Oyunlar</span>
+                            </div>
+                            <div class="bg-white bg-opacity-20 backdrop-blur-sm rounded-lg p-4 flex flex-col items-center text-center">
+                                <svg class="w-8 h-8 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
+                                </svg>
+                                <span class="font-bold">Ödüller</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-700 p-6 sm:p-8 md:p-12 relative min-h-[300px] sm:min-h-[350px] md:min-h-[400px] lg:w-1/2">
+                        <div class="absolute inset-0 grid grid-cols-8 grid-rows-6 gap-1 opacity-30">
+                            <script>
+                                document.addEventListener('DOMContentLoaded', () => {
+                                    const floorContainer = document.querySelector('.grid-cols-8.grid-rows-6');
+                                    for (let i = 0; i < 48; i++) {
+                                        const tile = document.createElement('div');
+                                        tile.className = 'bg-blue-500 rounded-sm';
+                                        floorContainer.appendChild(tile);
+                                    }
+                                });
+                            </script>
+                        </div>
+
+                        <div class="furniture absolute top-[20%] left-[20%] w-12 h-12 sm:w-16 sm:h-16 bg-yellow-500 rounded-md transform -rotate-12"></div>
+                        <div class="furniture absolute top-[30%] right-[20%] w-16 h-10 sm:w-24 sm:h-12 bg-red-500 rounded-md"></div>
+                        <div class="furniture furniture-rotate absolute bottom-[20%] left-[30%] w-14 h-14 sm:w-20 sm:h-20 bg-green-500 rounded-full"></div>
+                        <div class="furniture absolute bottom-[30%] right-[25%] w-12 h-16 sm:w-16 sm:h-24 bg-purple-500 rounded-md transform rotate-6"></div>
+
+                        <div class="pixel-character absolute bottom-[10%] right-[10%] transform scale-75 sm:scale-90 md:scale-100">
+                            <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user=mutaku&direction=4&head_direction=3&size=l" alt="Pixel Character" class="w-full h-auto">
+                        </div>
+
+                        <div class="bubble absolute top-[15%] left-[25%] bg-white rounded-lg p-2 sm:p-3 transform -translate-x-1/2">
+                            <div class="text-xs sm:text-sm font-bold">Sabırsızlanıyorum! 😄</div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 rotate-45 w-3 h-3 sm:w-4 sm:h-4 bg-white"></div>
+                        </div>
+
+                        <div class="bubble absolute top-[10%] right-[25%] bg-white rounded-lg p-2 sm:p-3 transform translate-x-1/2">
+                            <div class="text-xs sm:text-sm font-bold">Çok heyecanlıyım! 🎉</div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 rotate-45 w-3 h-3 sm:w-4 sm:h-4 bg-white"></div>
+                        </div>
+
+                        <div class="bubble absolute top-[25%] right-[15%] bg-white rounded-lg p-2 sm:p-3">
+                            <div class="text-xs sm:text-sm font-bold">Yakında bize katılın! 🌟</div>
+                            <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 rotate-45 w-3 h-3 sm:w-4 sm:h-4 bg-white"></div>
+                        </div>
+
+                        <div class="pixel-character absolute top-[45%] left-[35%] transform scale-50 sm:scale-60 md:scale-75">
+                            <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user=p_zeynep_q&direction=3&head_direction=3&size=l" alt="Pixel Character" class="w-full h-auto">
+                        </div>
+                        <div class="pixel-character absolute bottom-[10%] left-[5%] transform scale-50 sm:scale-60 md:scale-75">
+                            <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user=Fuzzer&direction=2&head_direction=3&size=l" alt="Pixel Character" class="w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-800 text-center py-3 sm:py-4 px-6">
+                    <p class="text-blue-200 text-sm sm:text-base">&copy; 2025 Habbocan. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function updateCountdown() {
+        const launchDate = new Date();
+        launchDate.setDate(launchDate.getDate() + 30);
+
+        const now = new Date();
+        const diff = launchDate - now;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    document.querySelectorAll('.furniture').forEach(item => {
+        item.addEventListener('click', function() {
+            this.style.transform = this.style.transform === 'scale(1.2)' ? '' : 'scale(1.2)';
+        });
+    });
+</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9513dc4c438f88e2',t:'MTc1MDE3NzA4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

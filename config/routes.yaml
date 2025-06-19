@@ -1,0 +1,9 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+panel_logout:
+    path: /panel/logout
+    controller: App\Controller\Panel\LoginController::logout

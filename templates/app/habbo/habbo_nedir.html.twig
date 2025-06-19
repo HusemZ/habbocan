@@ -1,0 +1,266 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="habbo-about-container">
+        <div class="page-header">
+            <h1>{{ page_title }}</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="section-intro">
+                <div class="intro-text">
+                    <p class="lead">
+                        Habbo, içerisinde yarattığın avatarın ile arkadaşlar edinip sohbet
+                        edebileceğin, odalar kurarak oyunlar tasarlayıp oynayabileceğin ve
+                        yaratıcılığını kullanarak çok daha fazlasını yapabileceğin çevrimiçi ve piksel
+                        sanat tarzı ile oluşturulmuş sanal topluluktur.
+                    </p>
+                    <p class="tagline">Harika insanlarla dolu bu ilginç yerde nerdeyse her şey mümkün…</p>
+                </div>
+                <div class="intro-image">
+                    <img src="{{ asset('images/habbo/habbo-nedir/habboway_2a.png') }}" alt="Habbo Dünyası">
+                </div>
+            </div>
+
+            <div class="section-features">
+                <h2>Habbo'da Neler Yapabilirsiniz?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="{{ asset('images/habbo/habbo-nedir/me_outfit_head_extra_active.gif') }}" alt="Habbo Avatar">
+                        </div>
+                        <h3>Avatar Oluşturma</h3>
+                        <p>Kendi tarzınızı yansıtan bir karakter (avatar) oluşturabilirsiniz. Saç stilinden kıyafetlerine kadar pek çok özelleştirme seçeneği sunulmaktadır.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="{{ asset('images/habbo/habbo-nedir/room_icon_open.gif') }}" alt="Habbo Oda Dekorasyonu">
+                        </div>
+                        <h3>Oda Dekorasyonu</h3>
+                        <p>Kendi odanızı yaratabilir ve eşyalarla (mobilya, ışıklar, dekorlar) istediğiniz gibi dekore edebilirsiniz.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="{{ asset('images/habbo/habbo-nedir/PLZ04.png') }}" alt="Habbo Arkadaşlık & Sohbet">
+                        </div>
+                        <h3>Arkadaşlık & Sohbet</h3>
+                        <p>Oyundaki diğer kullanıcılarla sohbet edebilir, arkadaşlıklar kurabilir ve topluluklara katılabilirsiniz.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="{{ asset('images/habbo/habbo-nedir/PT663.png') }}" alt="Habbo Etkinlikler & Oyunlar">
+                        </div>
+                        <h3>Etkinlikler & Oyunlar</h3>
+                        <p>Habbo'da günlük etkinlikler, yarışmalar, mini oyunlar ve rol yapma aktiviteleri düzenlenir.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="{{ asset('images/habbo/habbo-nedir/TRF99.png') }}" alt="Habbo Takas Sistemi">
+                        </div>
+                        <h3>Takas Sistemi</h3>
+                        <p>Sahip olduğunuz eşyaları diğer oyuncularla takas edebilir ya da alışveriş yapabilirsiniz.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <img src="{{ asset('images/habbo/habbo-nedir/me_credits_active.gif') }}" alt="Habbo Ticaret & Para">
+                        </div>
+                        <h3>Ticaret & Para</h3>
+                        <p>Oyunda "Habbo Kredisi" adı verilen bir para birimi bulunur. Bu kredilerle sanal eşyalar satın alabilirsiniz.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-security">
+                <h2>Güvenlik & Topluluk Kuralları</h2>
+                <div class="security-content">
+                    <div class="security-icon">
+                        <img src="{{ asset('images/habbo/toolbar_08.gif') }}" alt="Habbo Güvenlik & Topluluk Kuralları">
+                    </div>
+                    <p>Habbo, genç kullanıcı kitlesi nedeniyle güvenliğe önem verir. Oyuncuların saygılı olması, küfür, aldatmaca veya dolandırıcılık gibi eylemlerden kaçınması beklenir. Moderatörler ve filtre sistemleri ile ortam denetlenir.</p>
+                </div>
+            </div>
+
+            <div class="section-platforms">
+                <h2>Platformlar</h2>
+                <div class="platforms-content">
+                    <p>Habbo, hem tarayıcı üzerinden hem de mobil uygulamalar aracılığıyla oynanabilir.</p>
+                    <div class="platform-icons">
+                        <span class="platform"><i class="fas fa-desktop"></i> Web Tarayıcı</span>
+                        <span class="platform"><i class="fab fa-apple"></i> iOS</span>
+                        <span class="platform"><i class="fab fa-android"></i> Android</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .habbo-about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #a5b1d6;
+        }
+
+        .habbo-about-container .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #1a2545;
+            padding-bottom: 15px;
+        }
+
+        .habbo-about-container .page-header h1 {
+            color: #3498db;
+            font-weight: 700;
+        }
+
+        .habbo-about-container .content-section {
+            background-color: #18233f;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .habbo-about-container .section-intro {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .habbo-about-container .intro-text {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .habbo-about-container .intro-image {
+            flex: 2;
+            min-width: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .habbo-about-container .lead {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #a5b1d6;
+        }
+
+        .habbo-about-container .tagline {
+            font-style: italic;
+            color: #566182;
+            font-size: 1.1rem;
+        }
+
+        .habbo-about-container h2 {
+            color: #3498db;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a2545;
+        }
+
+        .habbo-about-container .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .habbo-about-container .feature-card {
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #111a39;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .habbo-about-container .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            border-color: #1a2545;
+        }
+
+        .habbo-about-container .feature-icon {
+            font-size: 2rem;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+
+        .habbo-about-container .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .habbo-about-container .section-security, .section-platforms {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+        }
+
+        .habbo-about-container .security-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .habbo-about-container .security-icon {
+            font-size: 2.5rem;
+            color: #3498db;
+        }
+
+        .habbo-about-container .platforms-content {
+            text-align: center;
+        }
+
+        .habbo-about-container .platform-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .habbo-about-container .platform {
+            background-color: #18233f;
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #1a2545;
+        }
+
+        .habbo-about-container .platform i {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .habbo-about-container .section-intro {
+                flex-direction: column;
+            }
+
+            .habbo-about-container .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .habbo-about-container .security-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+{% endblock %}

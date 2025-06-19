@@ -1,0 +1,46 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/panel/sidebar.css') }}">
+{% endblock %}
+
+<aside class="sidebar" id="sidebar">
+    <div class="logo">
+        <div class="logo-icon">H</div>
+        <div class="logo-text">Admin Panel</div>
+    </div>
+
+    <nav>
+        <ul class="nav-menu ps-0">
+            <li class="nav-item">
+                <a href="{{ path('panel_dashboard') }}"
+                   class="nav-link {{ app.request.get('_route') == 'panel_dashboard' ? 'active' : '' }}">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_DEVELOPER') or is_granted('ROLE_MODERATOR') %}
+                <li class="nav-item">
+                    <a href="{{ path('panel_users_index') }}"
+                       class="nav-link {{ app.request.get('_route') starts with 'panel_users' ? 'active' : '' }}">
+                        <i class="fas fa-users"></i>
+                        <span>Kullanıcılar</span>
+                    </a>
+                </li>
+            {% endif %}
+            {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_DEVELOPER') or is_granted('ROLE_MODERATOR') or is_granted('ROLE_HEAD_ARCHITECT') or is_granted('ROLE_HEAD_EDITOR') or is_granted('ROLE_EDITOR') %}
+                <li class="nav-item">
+                    <a href="{{ path('panel_news_index') }}"
+                       class="nav-link {{ app.request.get('_route') starts with 'panel_news' ? 'active' : '' }}">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Haberler</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-comments"></i>
+                        <span>Yorumlar</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</aside>

@@ -1,0 +1,6 @@
+'Invalid credentials.': 'Your username or password are invalid.'
+'Hesabınız aktif değil.': 'Your account is not active.'
+'Hesabınız bloke edilmiştir.': 'Your account has been blocked.'
+'Hesabınız silinmiştir.': 'Your account has been deleted.'
+'Geçersiz kullanıcı adı veya panel şifresi.': 'Invalid username or panel password.'
+'Panel erişimi için yetkiniz yok.': 'You do not have permission to access the panel.'

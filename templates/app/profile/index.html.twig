@@ -1,0 +1,636 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}Profil - {{ user.username }}{% endblock %}
+
+{% block body %}
+    <div class="profile-container">
+        <!-- Sidebar - Profile Info -->
+        <div class="profile-sidebar">
+            <div class="profile-card">
+                <div class="avatar-section">
+                    <div class="avatar-wrapper">
+                        <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ user.username }}&size=l&direction=2&head_direction=3&gesture=sml"
+                             alt="Kullanıcı Avatar" class="user-avatar">
+                    </div>
+                    <h1 class="username">{{ user.username }}</h1>
+                    {% if habboProfile %}
+                        <div class="habbo-motto">{{ habboProfile.user.motto }}</div>
+                    {% endif %}
+                </div>
+
+                {% if habboProfile %}
+                    <div class="habbo-card">
+                        <div class="habbo-stats-list">
+                            <div class="habbo-stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Katılım Tarihi</span>
+                                    <span class="stat-value">{{ user.createdAt|date('d.m.Y') }}</span>
+                                </div>
+                            </div>
+                            <div class="habbo-stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-calendar-alt"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Habbo'ya Katılım Tarihi</span>
+                                    <span class="stat-value">{{ habboProfile.user.memberSince|date('d.m.Y') }}</span>
+                                </div>
+                            </div>
+
+                            <div class="habbo-stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">Seviye</span>
+                                    <span class="stat-value">{{ habboProfile.user.currentLevel }}</span>
+                                </div>
+                            </div>
+
+                            <div class="habbo-stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-label">XP</span>
+                                    <span class="stat-value">{{ habboProfile.user.totalExperience }}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="profile-actions">
+                    <a href="{{ path('app_profile_edit') }}" class="btn-action btn-primary">
+                        <i class="fas fa-edit"></i>
+                        <span>Profili Düzenle</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="profile-content">
+                {% if habboProfile and habboProfile.friends is defined and habboProfile.friends|length > 0 %}
+                    <div class="content-header">
+                        <div class="section-title">
+                            <div class="title-text">
+                                <i class="fas fa-user-friends"></i>
+                                <span>Arkadaşlar</span>
+                                <div class="comments-badge">{{ habboProfile.friends|length }}</div>
+                            </div>
+                            {% if habboProfile.friends|length > 6 %}
+                                <div class="show-all-container">
+                                    <a href="#" class="show-all-button">
+                                        <span>Tümünü Gör</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="content-body">
+                        <div class="groups-container">
+                            {% for friend in habboProfile.friends|slice(0, 6) %}
+                                <div class="group-item">
+                                    <div class="group-badge-wrapper">
+                                        <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ friend.name }}&size=m&direction=4&head_direction=2&gesture=sml" alt="{{ friend.name }}" class="group-badge">
+                                    </div>
+                                    <div class="group-name">{{ friend.name }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="profile-content">
+                {% if habboProfile and habboProfile.badges is defined and habboProfile.badges|length > 0 %}
+                    <div class="content-header">
+                        <div class="section-title">
+                            <div class="title-text">
+                                <i class="fas fa-award"></i>
+                                <span>Rozetler</span>
+                                <div class="comments-badge">{{ habboProfile.badges|length }}</div>
+                            </div>
+                            {% if habboProfile.badges|length > 6 %}
+                                <div class="show-all-container">
+                                    <a href="#" class="show-all-button">
+                                        <span>Tümünü Gör</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="content-body">
+                        <div class="groups-container">
+                            {% for badge in habboProfile.badges|slice(0, 6) %}
+                                <div class="group-item">
+                                    <div class="group-badge-wrapper">
+                                        <img src="https://images.habbo.com/c_images/album1584/{{ badge.code }}.gif" alt="{{ badge.name }}" class="group-badge">
+                                    </div>
+                                    <div class="group-name">{{ badge.name }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="profile-content">
+                {% if habboProfile and habboProfile.rooms is defined and habboProfile.rooms|length > 0 %}
+                    <div class="content-header">
+                        <div class="section-title">
+                            <div class="title-text">
+                                <i class="fas fa-door-open"></i>
+                                <span>Odalar</span>
+                                <div class="comments-badge">{{ habboProfile.rooms|length }}</div>
+                            </div>
+                            {% if habboProfile.rooms|length > 6 %}
+                                <div class="show-all-container">
+                                    <a href="#" class="show-all-button">
+                                        <span>Tümünü Gör</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="content-body">
+                        <div class="groups-container">
+                            {% for room in habboProfile.rooms|slice(0, 6) %}
+                                <div class="group-item">
+                                    <div class="group-badge-wrapper">
+                                        <img src="{{ asset('images/room_blank.gif') }}" alt="{{ room.name }}" class="group-badge">
+                                    </div>
+                                    <div class="group-name">{{ room.name }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="profile-content">
+                {% if habboProfile and habboProfile.groups is defined and habboProfile.groups|length > 0 %}
+                    <div class="content-header">
+                        <div class="section-title">
+                            <div class="title-text">
+                                <i class="fas fa-users"></i>
+                                <span>Gruplar</span>
+                                <div class="comments-badge">{{ habboProfile.groups|length }}</div>
+                            </div>
+                            {% if habboProfile.groups|length > 6 %}
+                                <div class="show-all-container">
+                                    <a href="#" class="show-all-button">
+                                        <span>Tümünü Gör</span>
+                                        <i class="fas fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="content-body">
+                        <div class="groups-container">
+                            {% for group in habboProfile.groups|slice(0, 6) %}
+                                <div class="group-item">
+                                    <div class="group-badge-wrapper">
+                                        <img src="https://www.habbo.com.tr/habbo-imaging/badge/{{ group.badgeCode }}.gif" alt="{{ group.name }}" class="group-badge">
+                                    </div>
+                                    <div class="group-name">{{ group.name }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+    {% block stylesheets %}
+        {{ parent() }}
+        <style>
+            .profile-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+                display: grid;
+                gap: 2rem;
+                grid-template-columns: 1fr 2fr;
+                align-items: start;
+            }
+
+            .profile-container .profile-sidebar {
+                position: sticky;
+                top: 2rem;
+            }
+
+            .profile-container .profile-card {
+                background: #18233f;
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(52, 152, 219, 0.15);
+                border-radius: 24px;
+                padding: 2.5rem;
+                transition: all 0.3s ease;
+            }
+
+            .profile-container .avatar-section {
+                text-align: center;
+                margin-bottom: 1.5rem;
+                position: relative;
+            }
+
+            .profile-container .avatar-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 0 auto;
+                position: relative;
+                width: 100%;
+                height: 160px;
+                border-radius: 16px;
+                background: #111a39;
+                border: 1px solid rgba(52, 152, 219, 0.2);
+                overflow: hidden;
+            }
+
+            .profile-container .avatar-wrapper img{
+                position: relative;
+                top: 20px;
+            }
+
+            .profile-container .username {
+                font-size: 1.6rem;
+                font-weight: 800;
+                background: linear-gradient(135deg, #ffffff, #a5b1d6);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                letter-spacing: -1px;
+                margin-bottom: 0;
+            }
+
+            .profile-container .user-meta i {
+                color: #3498db;
+            }
+
+            .profile-container .habbo-card {
+                background: #111a39;
+                border: 1px solid rgba(52, 152, 219, 0.2);
+                border-radius: 16px;
+                padding: 0.5rem;
+                margin-bottom: 2rem;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .profile-container .habbo-motto {
+                text-align: center;
+                font-style: italic;
+                color: #d1d9f0;
+                font-size: 1rem;
+                margin-bottom: 0;
+                position: relative;
+            }
+
+            .profile-container .habbo-motto::before,
+            .profile-container .habbo-motto::after {
+                content: '"';
+                color: #3498db;
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+
+            .profile-container .habbo-stats-list {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .profile-container .habbo-stat-item {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 0.75rem;
+                background: #18233f;
+                border-radius: 12px;
+                border: 1px solid rgba(50, 74, 135, 0.3);
+                transition: transform 0.2s ease, border-color 0.2s ease;
+            }
+
+            .profile-container .habbo-stat-item:hover {
+                border-color: rgba(52, 152, 219, 0.4);
+            }
+
+            .profile-container .stat-icon {
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(52, 152, 219, 0.2);
+                border-radius: 8px;
+            }
+
+            .profile-container .stat-icon i {
+                font-size: 1rem;
+                color: #3498db;
+            }
+
+            .profile-container .stat-info {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+            }
+
+            .profile-container .stat-label {
+                font-size: 0.85rem;
+                color: #a5b1d6;
+                margin-bottom: 0.2rem;
+            }
+
+            .profile-container .stat-value {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: #d1d9f0;
+            }
+
+            .profile-container .profile-actions {
+                display: flex;
+                gap: 1rem;
+                margin-top: 2rem;
+            }
+
+            .profile-container .btn-action {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                padding: 1rem;
+                border-radius: 16px;
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+                font-size: 0.95rem;
+            }
+
+            .profile-container .btn-primary {
+                background: linear-gradient(135deg, #3498db, #2980b9);
+                color: #ffffff;
+                box-shadow: 0 8px 30px rgba(52, 152, 219, 0.3);
+            }
+
+            .profile-container .btn-primary:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 12px 40px rgba(52, 152, 219, 0.4);
+            }
+
+            .profile-container .profile-content {
+                background: #18233f;
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(52, 152, 219, 0.1);
+                border-radius: 24px;
+                overflow: hidden;
+                margin-bottom: 2rem;
+            }
+
+            .profile-container .content-header {
+                background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(41, 128, 185, 0.05));
+                padding: 1rem 1.6rem;
+                border-bottom: 1px solid rgba(52, 152, 219, 0.15);
+            }
+
+            .profile-container .section-title {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 0;
+            }
+
+            .profile-container .title-text {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-size: 1.2rem;
+                font-weight: 700;
+                color: #ffffff;
+            }
+
+            .profile-container .title-text i {
+                color: #3498db;
+            }
+
+            .profile-container .comments-badge {
+                background: linear-gradient(135deg, #3498db, #2980b9);
+                color: #ffffff;
+                padding: 0.2rem 0.6rem;
+                border-radius: 20px;
+                font-weight: 600;
+                font-size: 0.9rem;
+            }
+
+            .profile-container .content-body {
+                padding: 2rem;
+            }
+
+            .profile-container .empty-icon i {
+                font-size: 5rem;
+                color: rgba(52, 152, 219, 0.2);
+                background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.1));
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            .profile-container .empty-title {
+                font-size: 1.8rem;
+                color: #d1d9f0;
+                margin-bottom: 1rem;
+                font-weight: 600;
+            }
+
+            .profile-container .empty-subtitle {
+                font-size: 1.1rem;
+                opacity: 0.8;
+                margin: 0;
+            }
+
+            /* Grup stil düzenlemeleri */
+            .profile-container .groups-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: .5rem;
+            }
+
+            .profile-container .group-item {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                transition: transform 0.2s ease;
+            }
+
+            .profile-container .group-item:hover {
+                transform: translateY(-5px);
+            }
+
+            .profile-container .group-badge-wrapper {
+                width: 60px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #111a39;
+                border: 1px solid rgba(50, 74, 135, 0.3);
+                border-radius: 12px;
+                padding: 8px;
+                margin-bottom: 10px;
+                transition: all 0.3s ease;
+            }
+
+            .profile-container .group-item:hover .group-badge-wrapper {
+                border-color: rgba(52, 152, 219, 0.6);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .profile-container .group-badge {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .profile-container .group-name {
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: #d1d9f0;
+                max-width: 100px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .profile-container .show-all-container {
+                display: flex;
+                justify-content: center;
+            }
+
+            .profile-container .show-all-button {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 0.4rem 0.8rem;
+                border-radius: 50px;
+                background: rgba(52, 152, 219, 0.15);
+                border: 1px solid rgba(52, 152, 219, 0.3);
+                color: #3498db;
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+
+            .profile-container .show-all-button:hover {
+                background: rgba(52, 152, 219, 0.3);
+            }
+
+            .profile-container .show-all-button i {
+                font-size: 0.8rem;
+            }
+
+            @media (max-width: 1024px) {
+                .profile-container .profile-container {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                }
+
+                .profile-container .profile-sidebar {
+                    position: static;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .profile-container .profile-container {
+                    padding: 1rem;
+                }
+
+                .profile-container .profile-card,
+                .profile-container .content-header,
+                .profile-container .content-body {
+                    padding: 1.5rem;
+                }
+
+                .profile-container .username {
+                    font-size: 2rem;
+                }
+
+                .profile-container .user-avatar {
+                    width: 120px;
+                    height: 120px;
+                }
+
+                .profile-container .title-text {
+                    font-size: 1.2rem;
+                }
+
+                .profile-container .profile-actions {
+                    flex-direction: column;
+                }
+
+                .profile-container .comment-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.75rem;
+                }
+
+                .profile-container .groups-container {
+                    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+                    gap: 1rem;
+                }
+
+                .profile-container .group-badge-wrapper {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .profile-container .profile-container {
+                    padding: 0.5rem;
+                }
+
+                .profile-container .username {
+                    font-size: 1.8rem;
+                }
+
+                .profile-container .user-avatar {
+                    width: 100px;
+                    height: 100px;
+                }
+
+                .profile-container .empty-state {
+                    padding: 3rem 1rem;
+                }
+
+                .profile-container .empty-icon i {
+                    font-size: 4rem;
+                }
+
+                .profile-container .groups-container {
+                    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                }
+
+                .profile-container .group-name {
+                    font-size: 0.8rem;
+                }
+            }
+        </style>
+    {% endblock %}

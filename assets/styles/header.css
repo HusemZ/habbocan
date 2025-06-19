@@ -1,0 +1,172 @@
+.app-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: calc(100% - 290px);
+    background-color: #0d152c;
+    padding: 10px 20px;
+    color: #a5b1d6;
+    z-index: 1000;
+}
+
+.app-header .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-header .welcome-text {
+    margin: 0;
+    font-size: 16px;
+}
+
+.app-header .welcome-text .username {
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.app-header .header-auth {
+    display: flex;
+    align-items: center;
+}
+
+.app-header .auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.app-header .btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.app-header .btn-login {
+    background-color: transparent;
+    color: #a5b1d6;
+    border: 1px solid #1a2545;
+}
+
+.app-header .btn-register {
+    background-color: #3498db;
+    color: white;
+    border: 1px solid #3498db;
+}
+
+.app-header .btn-login:hover {
+    background-color: #1a2545;
+    color: white;
+}
+
+.app-header .btn-register:hover {
+    background-color: #2980b9;
+}
+
+.app-header .user-dropdown {
+    position: relative;
+}
+
+.app-header .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 4px 12px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+.app-header .user-info:hover {
+    background-color: #111a39;
+}
+
+.app-header .avatar-container {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #3498db;
+    position: relative;
+    cursor: pointer;
+}
+
+.app-header .user-avatar {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    position: absolute;
+    left: -10px;
+    top: 0;
+}
+
+.app-header .dropdown-username {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.app-header .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 125px;
+    background-color: #111a39;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.app-header .dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.app-header .dropdown-menu ul {
+    list-style: none;
+    padding: 8px 0;
+    margin: 0;
+}
+
+.app-header .dropdown-menu li {
+    padding: 0;
+}
+
+.app-header .dropdown-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    color: #a5b1d6;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-size: 13px;
+}
+
+.app-header .dropdown-menu a:hover {
+    background-color: #253863;
+    color: #ffffff;
+}
+
+.app-header .separator {
+    border-top: 1px solid #253863;
+    margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+    .app-header .dropdown-username {
+        display: none;
+    }
+
+    .app-header .welcome-text {
+        font-size: 14px;
+    }
+}

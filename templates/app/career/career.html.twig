@@ -1,0 +1,353 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <div class="habbo-career-container">
+        <div class="page-header">
+            <h1>Habbocan'da Kariyer</h1>
+        </div>
+
+        <div class="content-section">
+            <div class="section-intro">
+                <div class="intro-text">
+                    <h2 class="brand-title">Habbocan'da Kariyer</h2>
+                    <p class="lead">Habbo'nun kalbi Habbocan, büyüyen ve gelişen topluluğuna yeni ekip üyeleri arıyor. Eğer sen de aktif, sorumluluk sahibi ve Habbo dünyasına tutkuluysan, aradığımız kişi sensin!</p>
+                </div>
+                <div class="intro-image">
+                    <img src="{{ asset('images/habbo/habboway_5a.png') }}" alt="Habbocan Kariyer">
+                </div>
+            </div>
+
+            <div class="section-benefits">
+                <h2>Habbocan ailesine katılarak;</h2>
+                <div class="benefits-list">
+                    <div class="benefit-card">
+                        <div class="benefit-bullet"></div>
+                        <div class="benefit-content">
+                            <h3>Yaratıcı projelerde yer alabilir</h3>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-bullet"></div>
+                        <div class="benefit-content">
+                            <h3>Topluluğumuzun gelişimine katkı sağlayabilir</h3>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-bullet"></div>
+                        <div class="benefit-content">
+                            <h3>Oyunculara destek olabilir</h3>
+                        </div>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-bullet"></div>
+                        <div class="benefit-content">
+                            <h3>Sitemizi daha iyi bir hale getirmek için fikirlerini paylaşabilirsin</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-apply">
+                <h2>Başvur</h2>
+                <div class="apply-content">
+                    <p>Başvurun için bizlere kısa bir tanıtım yazısı ile ulaş:</p>
+                    <div class="apply-box">
+                        <div class="apply-details">
+                            <ul class="apply-requirements">
+                                <li><i class="fas fa-check"></i> Habbo adın</li>
+                                <li><i class="fas fa-check"></i> Habbo deneyimin ve bilgi seviyeni</li>
+                                <li><i class="fas fa-check"></i> Hangi konularda katkı sağlayabileceğini</li>
+                                <li><i class="fas fa-check"></i> Neden Habbocan ekibine katılmak istediğini</li>
+                                <li><i class="fas fa-check"></i> Haftada kaç saat ayırabileceğini</li>
+                            </ul>
+                        </div>
+                        <div class="apply-cta">
+                            <a href="mailto:{{ application_email }}" class="btn btn-primary"><i class="fas fa-paper-plane"></i> E-posta ile Başvur</a>
+                        </div>
+                    </div>
+                    <div class="apply-slogan">
+                        <h3>Haydi, Habbo'nun Kalbi'nde yerini al!</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-conclusion">
+                <div class="conclusion-content">
+                    <p class="conclusion-text">Topluluğumuza katkı sağlamak ve bu heyecanın bir parçası olmak istiyorsan, seni Habbocan ekibine bekliyoruz. Birlikte daha güçlü, daha canlı bir Habbo için çalışıyoruz!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .habbo-career-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #a5b1d6;
+        }
+
+        .habbo-career-container .page-header {
+            margin-bottom: 30px;
+            border-bottom: 2px solid #1a2545;
+            padding-bottom: 15px;
+        }
+
+        .habbo-career-container .page-header h1 {
+            color: #3498db;
+            font-weight: 700;
+        }
+
+        .habbo-career-container .content-section {
+            background-color: #18233f;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .habbo-career-container .section-intro {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .habbo-career-container .intro-text {
+            flex: 3;
+            min-width: 300px;
+        }
+
+        .habbo-career-container .intro-image {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .habbo-career-container .intro-image img,
+        .habbo-career-container .team-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .habbo-career-container .lead {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            color: #a5b1d6;
+            margin-bottom: 15px;
+        }
+
+        .habbo-career-container h2 {
+            color: #3498db;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1a2545;
+        }
+
+        .habbo-career-container .brand-title {
+            color: #3498db;
+            border-bottom: none;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            padding-bottom: 0;
+        }
+
+        .habbo-career-container .section-benefits {
+            margin-bottom: 40px;
+        }
+
+        .habbo-career-container .benefits-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .habbo-career-container .benefit-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #111a39;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            padding: 16px 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .habbo-career-container .benefit-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
+            border-color: #2ecc71;
+        }
+
+        .habbo-career-container .benefit-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: #3498db;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .habbo-career-container .benefit-card:hover .benefit-bullet {
+            background-color: #2ecc71;
+            transform: scale(1.2);
+        }
+
+        .habbo-career-container .benefit-content {
+            flex: 1;
+        }
+
+        .habbo-career-container .benefit-content h3 {
+            color: #fff;
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .habbo-career-container .section-apply {
+            margin-bottom: 40px;
+        }
+
+        .habbo-career-container .apply-content {
+            background-color: #111a39;
+            border-radius: 8px;
+            border: 2px solid #1a2545;
+            padding: 30px;
+        }
+
+        .habbo-career-container .apply-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .habbo-career-container .apply-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            background-color: #18233f;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .habbo-career-container .apply-details {
+            flex: 2;
+            min-width: 300px;
+        }
+
+        .habbo-career-container .apply-requirements {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .habbo-career-container .apply-requirements li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .habbo-career-container .apply-requirements li i {
+            color: #2ecc71;
+            margin-right: 10px;
+        }
+
+        .habbo-career-container .apply-cta {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .habbo-career-container .btn-primary {
+            background-color: #3498db;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .habbo-career-container .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .habbo-career-container .apply-slogan {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .habbo-career-container .apply-slogan h3 {
+            color: #3498db;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .habbo-career-container .section-conclusion {
+            text-align: center;
+        }
+
+        .habbo-career-container .conclusion-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .habbo-career-container .conclusion-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+
+        @media (max-width: 768px) {
+            .habbo-career-container .section-intro,
+            .habbo-career-container .apply-box {
+                flex-direction: column;
+            }
+
+            .habbo-career-container .intro-image {
+                margin: 0 auto;
+            }
+
+            .habbo-career-container .apply-cta {
+                margin-top: 20px;
+                width: 100%;
+            }
+
+            .habbo-career-container .brand-title,
+            .habbo-career-container h2 {
+                text-align: center;
+            }
+
+            .habbo-career-container .benefit-card {
+                padding: 14px 16px;
+            }
+
+            .habbo-career-container .benefit-content h3 {
+                font-size: 1rem;
+            }
+        }
+    </style>
+{% endblock %}

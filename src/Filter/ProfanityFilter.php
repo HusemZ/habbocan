@@ -12,7 +12,9 @@ class ProfanityFilter
             'amk', 'aq', 'piç', 'gerizekalı', 'salak', 'aptal',
             'mal', 'yavşak', 'şerefsiz', 'göt', 'pezevenk', 'dangalak',
             'ahmak', 'hıyar', 'sik', 'oç', 'puşt', 'ibne', 'orospu', 'sürtük', 'yarrak', 'kaltak', 'sürtük', 'bok', 'siktir', 'siktir git',
-            'amına', 'amın', 'amınakoyim', 'amcık', 'amcıkoydum', 'sikim', 'sikeyim', 'sikeyorsa', 'sikeyor', 'sikeyim seni', 'sikeyim amına', 'sikeyim amcık', 'sikeyim oç', 'sikeyim piç', 'sikeyim gerizekalı', 'sikeyim salak', 'sikeyim aptal',
+            'amına', 'amın', 'amınakoyim', 'amcık', 'amcıkoydum', 'sikim', 'sikeyim', 'sikeyorsa', 'sikeyor', 'sikeyim seni', 'sikeyim amına',
+            'sikeyim amcık', 'sikeyim oç', 'sikeyim piç', 'sikeyim gerizekalı', 'sikeyim salak', 'sikeyim aptal',
+            'tabbo', 'cabbo', 'kabbo', 'habnet', 'o.ç', 'oç.', 'o.ç.',
         ];
     }
 

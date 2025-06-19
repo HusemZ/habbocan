@@ -1,0 +1,140 @@
+{% extends 'panel/base.html.twig' %}
+
+{% block title %}Haberler{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('styles/panel/news.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 text-gray-800">Haberler</h1>
+            <a href="{{ path('panel_news_new') }}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> Yeni Haber Ekle
+            </a>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold text-primary">Haber Listesi</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="news-table" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Başlık</th>
+                            <th>Kategori</th>
+                            <th>Durum</th>
+                            <th>Oluşturulma Tarihi</th>
+                            <th>Sabitlenmiş</th>
+                            <th width="120">İşlemler</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        class NewsDataTable {
+            constructor() {
+                this.table = null;
+                this.init();
+            }
+
+            init() {
+                this.table = $('#news-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: "{{ path('panel_news_data') }}",
+                        type: "GET",
+                        error: (xhr, error, thrown) => {
+                            console.error("AJAX Error:", xhr.responseText, error, thrown);
+                            this.showError('Veri yüklenirken bir hata oluştu.');
+                        }
+                    },
+                    columns: [
+                        { data: 'id' },
+                        { data: 'title' },
+                        { data: 'category' },
+                        { data: 'status', orderable: true },
+                        { data: 'createdAt' },
+                        { data: 'isPinned', orderable: true, searchable: false },
+                        { data: 'actions', orderable: false, searchable: false }
+                    ],
+                    language: {
+                        url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json"
+                    },
+                    pageLength: 25,
+                    order: [[4, 'desc']],
+                    responsive: true,
+                    dom: 'Bfrtip',
+                    drawCallback: () => {
+                        this.bindEvents();
+                    }
+                });
+            }
+
+            bindEvents() {
+                $('.delete-news').off('click').on('click', (e) => {
+                    e.preventDefault();
+                    this.handleDelete($(e.currentTarget));
+                });
+            }
+
+            handleDelete($button) {
+                const newsId = $button.data('id');
+                const newsTitle = $button.data('title') || 'Bu haber';
+
+                if (confirm(`"${newsTitle}" haberini silmek istediğinizden emin misiniz?`)) {
+                    this.deleteNews(newsId);
+                }
+            }
+
+            deleteNews(newsId) {
+                $.ajax({
+                    url: `/panel/news/${newsId}/delete`,
+                    type: 'POST',
+                    headers: {
+                        'X-HTTP-Method-Override': 'DELETE',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: (result) => {
+                        this.table.ajax.reload(null, false);
+                        this.showSuccess('Haber başarıyla silindi.');
+                    },
+                    error: (xhr) => {
+                        const errorMsg = xhr.responseJSON?.message || 'Bir hata oluştu';
+                        this.showError(`Silme işlemi başarısız: ${errorMsg}`);
+                    }
+                });
+            }
+
+            showSuccess(message) {
+                alert(message);
+            }
+
+            showError(message) {
+                console.error(message);
+                alert(message);
+            }
+        }
+
+        $(document).ready(() => {
+            new NewsDataTable();
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/panel/navbar.css') }}">
+{% endblock %}
+<header class="navbar">
+    <div class="navbar-left">
+        <button class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+    <div class="navbar-right">
+        <button class="notification-btn">
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge">3</span>
+        </button>
+
+        <div class="user-profile dropdown">
+            <div class="user-profile-toggle dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" id="userDropdown">
+                <div class="user-avatar">
+                    <span class="avatar-initial">{{ app.user.username|slice(0, 1)|upper }}</span>
+                </div>
+                <div class="user-info">
+                    <p>{{ app.user.username }}</p>
+                </div>
+            </div>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li>
+                    <a class="dropdown-item text-danger" href="{{ path('panel_logout') }}">
+                        <i class="fas fa-sign-out-alt me-2"></i> Çıkış Yap
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

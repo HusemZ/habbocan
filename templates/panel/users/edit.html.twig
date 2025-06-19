@@ -1,0 +1,674 @@
+{% extends 'panel/base.html.twig' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('styles/panel/users.css') }}">
+    <style>
+        .container-fluid {
+            padding: 1.5rem;
+        }
+
+        .breadcrumb {
+            background: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumb-item a {
+            color: #6c757d;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .breadcrumb-item a:hover {
+            color: #495057;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #495057;
+            margin: 0;
+        }
+
+        .btn-back {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-back:hover {
+            background: #5a6268;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .main-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem;
+            border: none;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .section-icon {
+            color: #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: all 0.2s;
+            background: white;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .password-info {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .password-info-text {
+            color: #856404;
+            font-size: 0.875rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .password-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .roles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .role-option {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .role-option:hover {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .role-option.selected {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .role-checkbox {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .role-content {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .role-icon {
+            width: 32px;
+            height: 32px;
+            color: #667eea;
+            flex-shrink: 0;
+        }
+
+        .role-info h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #495057;
+            margin: 0 0 0.25rem 0;
+        }
+
+        .role-info p {
+            font-size: 0.8rem;
+            color: #6c757d;
+            margin: 0;
+        }
+
+        .form-actions {
+            background: #f8f9fa;
+            padding: 1.5rem 2rem;
+            margin: 0 -2rem -2rem -2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-start;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #6c757d;
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            border-color: #adb5bd;
+            color: #495057;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-success {
+            background: #d1eddd;
+            border: 1px solid #badbcc;
+            color: #155724;
+        }
+
+        .alert-danger {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+
+        .alert-dismissible .btn-close {
+            background: none;
+            border: none;
+            font-size: 1.25rem;
+            cursor: pointer;
+            color: inherit;
+            opacity: 0.6;
+            margin-left: auto;
+        }
+
+        .alert-dismissible .btn-close:hover {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container-fluid {
+                padding: 1rem;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .password-row {
+                grid-template-columns: 1fr;
+            }
+
+            .roles-container {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="page-header">
+            <h1 class="page-title">{{ page_title }}</h1>
+            <a href="{{ path('panel_users_index') }}" class="btn-back">
+                <i class="fas fa-arrow-left"></i>
+                Geri Dön
+            </a>
+        </div>
+
+        <div class="main-card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <i class="fas fa-user-edit"></i>
+                    Kullanıcı Bilgilerini Düzenle
+                </h3>
+            </div>
+
+            <div class="card-body">
+                {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                <div class="form-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-user section-icon"></i>
+                        Kullanıcı Bilgileri
+                    </h4>
+
+                    <div class="form-group">
+                        {{ form_label(form.username, 'Kullanıcı Adı') }}
+                        {{ form_widget(form.username, {'attr': {
+                            'class': 'form-control',
+                            'placeholder': 'Kullanıcı adını girin',
+                            'readonly': 'readonly',
+                            'style': 'background-color: #f8f9fa; cursor: not-allowed;'
+                        }}) }}
+                        {{ form_errors(form.username) }}
+                    </div>
+                </div>
+
+                {% if form.plainPanelPassword is defined %}
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-shield-alt section-icon"></i>
+                            Panel Şifresi
+                        </h4>
+
+                        <div class="password-info">
+                            <p class="password-info-text">
+                                <i class="fas fa-info-circle"></i>
+                                Panel şifresini değiştirmek istemiyorsanız bu alanları boş bırakabilirsiniz.
+                            </p>
+                        </div>
+
+                        <div class="password-row">
+                            <div class="form-group">
+                                {{ form_label(form.plainPanelPassword.first, 'Yeni Panel Şifresi') }}
+                                {{ form_widget(form.plainPanelPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Yeni şifre'}}) }}
+                                {{ form_errors(form.plainPanelPassword.first) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(form.plainPanelPassword.second, 'Panel Şifre Tekrar') }}
+                                {{ form_widget(form.plainPanelPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Şifreyi tekrarlayın'}}) }}
+                                {{ form_errors(form.plainPanelPassword.second) }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-section">
+                    <h4 class="section-title">
+                        <i class="fas fa-key section-icon"></i>
+                        Kullanıcı Rolleri
+                    </h4>
+
+                    <div class="roles-container">
+                        {% for role in form.roles %}
+                            <label class="role-option" for="{{ role.vars.id }}">
+                                {% set is_checked = role.vars.checked or (app.user.roles is defined and role.vars.value in app.user.roles) %}
+                                {{ form_widget(role, {'attr': {'class': 'role-checkbox'}, 'checked': is_checked}) }}
+                                <div class="role-content">
+                                    {% if role.vars.value == 'ROLE_ADMIN' %}
+                                        <i class="fas fa-crown role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Yönetici</h4>
+                                            <p>Tüm yetkilere sahip</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_DEVELOPER' %}
+                                        <i class="fas fa-code role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Geliştirici</h4>
+                                            <p>Yazılım geliştirme</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_MODERATOR' %}
+                                        <i class="fas fa-shield-alt role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Moderatör</h4>
+                                            <p>İçerik denetleme</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_HEAD_EDITOR' %}
+                                        <i class="fas fa-edit role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Baş Haberci</h4>
+                                            <p>İçerik düzenleme ve onaylama</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_HEAD_ARCHITECT' %}
+                                        <i class="fas fa-plus role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Baş Mimar</h4>
+                                            <p>Yeni içerik ekleme</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_EDITOR' %}
+                                        <i class="fas fa-edit role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Haberci</h4>
+                                            <p>Yeni içerik ekleme</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_ARCHITECT' %}
+                                        <i class="fas fa-plus role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Mimar</h4>
+                                            <p>Yetkisi yok</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_MOBINATOR' %}
+                                        <i class="fas fa-mobile-alt role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Mobinator</h4>
+                                            <p>Yeni mobi ekleme</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_GRAPHICER' %}
+                                        <i class="fas fa-image role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Grafiker</h4>
+                                            <p>Görsel içerik ekleme</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_HEAD_IN_GAME_HELPER' %}
+                                        <i class="fas fa-gamepad role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Baş Oyun İçi Destek</h4>
+                                            <p>Yetkisi yok</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_IN_GAME_HELPER' %}
+                                        <i class="fas fa-gamepad role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Oyun İçi Destek</h4>
+                                            <p>Yetkisi yok</p>
+                                        </div>
+                                    {% elseif role.vars.value == 'ROLE_USER' %}
+                                        <i class="fas fa-user role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>Kullanıcı</h4>
+                                            <p>Temel kullanıcı</p>
+                                        </div>
+                                    {% else %}
+                                        <i class="fas fa-cog role-icon"></i>
+                                        <div class="role-info">
+                                            <h4>{{ role.vars.value }}</h4>
+                                            <p>Özel rol</p>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </label>
+                        {% endfor %}
+                    </div>
+                    {{ form_errors(form.roles) }}
+                </div>
+
+                {% if user.username != app.user.username %}
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-ban section-icon"></i>
+                            Kullanıcıyı Yasakla
+                        </h4>
+                        <div class="form-group">
+                            <div class="ban-container">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="isBlocked" name="isBlocked"
+                                           {% if user.isBlocked %}checked{% endif %}>
+                                    <label class="form-check-label" for="isBlocked">
+                                        {% if user.isBlocked %}
+                                            <span class="text-danger">Bu kullanıcı şu anda yasaklı</span>
+                                        {% else %}
+                                            <span class="text-success">Bu kullanıcı şu anda aktif</span>
+                                        {% endif %}
+                                    </label>
+                                </div>
+
+                                <div class="small text-muted mt-2">
+                                    Kullanıcının erişim durumunu değiştirmek için kutucuğu işaretleyin veya işareti kaldırın
+                                    ve formun altındaki "Değişiklikleri Kaydet" düğmesine tıklayın.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-user-check section-icon"></i>
+                            Kullanıcı Aktifliği
+                        </h4>
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="isActive" name="isActive"
+                                       {% if user.isActive %}checked{% endif %}>
+                                <label class="form-check-label" for="isActive">
+                                    {% if user.isActive %}
+                                        <span class="text-success">Bu kullanıcı şu anda aktif</span>
+                                    {% else %}
+                                        <span class="text-danger">Bu kullanıcı şu anda pasif</span>
+                                    {% endif %}
+                                </label>
+                            </div>
+                            <div class="small text-muted mt-2">
+                                Kullanıcının aktiflik durumunu değiştirmek için kutucuğu işaretleyin veya işareti kaldırın
+                                ve formun altındaki "Değişiklikleri Kaydet" düğmesine tıklayın.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4 class="section-title">
+                            <i class="fas fa-trash-alt section-icon"></i>
+                            Kullanıcıyı Sil
+                        </h4>
+                        <div class="form-group">
+                            <div class="alert alert-danger">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Bu kullanıcıyı silmek, tüm verilerini kalıcı olarak silecektir. Bu işlem geri alınamaz.
+                            </div>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteUserModal">
+                                <i class="fas fa-trash-alt"></i>
+                                Kullanıcıyı Sil
+                            </button>
+
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Değişiklikleri Kaydet
+                    </button>
+
+                    <a href="{{ path('panel_users_index') }}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i>
+                        İptal
+                    </a>
+                </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        {% if user.username != app.user.username %}
+            <div class="modal fade" id="deleteUserModal" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteUserModalLabel">Kullanıcıyı Sil</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>{{ user.username }} kullanıcısını silmek istediğinizden emin misiniz? Bu işlem geri alınamaz.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">İptal</button>
+                            <form action="{{ path('panel_users_delete', {'id': user.id}) }}" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash-alt"></i>
+                                    Kullanıcıyı Sil
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const roleCheckboxes = document.querySelectorAll('.role-checkbox');
+            const roleOptions = document.querySelectorAll('.role-option');
+
+            const userRoles = {{ user.roles|json_encode|raw }};
+
+            roleCheckboxes.forEach((checkbox, index) => {
+                const value = checkbox.value;
+
+                if (Array.isArray(userRoles) && userRoles.includes(value)) {
+                    checkbox.checked = true;
+                    roleOptions[index].classList.add('selected');
+                } else {
+                    checkbox.checked = false;
+                    roleOptions[index].classList.remove('selected');
+                }
+            });
+
+            roleOptions.forEach((option, index) => {
+                option.addEventListener('click', function () {
+                    const checkbox = roleCheckboxes[index];
+                    checkbox.checked = !checkbox.checked;
+
+                    if (checkbox.checked) {
+                        option.classList.add('selected');
+                    } else {
+                        option.classList.remove('selected');
+                    }
+                });
+            });
+
+            const form = document.querySelector('form');
+            if (form) {
+                form.addEventListener('submit', function (e) {
+                    const checkedRoles = document.querySelectorAll('.role-checkbox:checked');
+                    if (checkedRoles.length === 0) {
+                        e.preventDefault();
+
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+                        alertDiv.innerHTML = `
+                    <i class="fas fa-exclamation-triangle"></i>
+                    En az bir rol seçmelisiniz!
+                    <button type="button" class="btn-close" onclick="this.parentElement.remove()">&times;</button>
+                `;
+
+                        const container = document.querySelector('.container-fluid');
+                        const header = container.querySelector('.page-header');
+                        container.insertBefore(alertDiv, header.nextSibling);
+
+                        alertDiv.scrollIntoView({behavior: 'smooth'});
+
+                        return false;
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

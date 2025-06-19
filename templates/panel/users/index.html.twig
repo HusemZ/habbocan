@@ -1,0 +1,129 @@
+{% extends 'panel/base.html.twig' %}
+
+{% block title %}Kullanıcılar{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="{{ asset('styles/panel/users.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 text-gray-800">Kullanıcılar</h1>
+        </div>
+
+        <div class="card shadow mb-4">
+            <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                <h6 class="m-0 font-weight-bold text-primary">Kullanıcı Listesi</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="users-table" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Kullanıcı Adı</th>
+                            <th>Roller</th>
+                            <th width="120">İşlemler</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+
+    <script>
+        class UserDataTable {
+            constructor() {
+                this.table = null;
+                this.init();
+            }
+
+            init() {
+                this.table = $('#users-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: "{{ path('panel_users_data') }}",
+                        type: "GET",
+                        error: (xhr, error, thrown) => {
+                            console.error("AJAX Error:", xhr.responseText, error, thrown);
+                            this.showError('Veri yüklenirken bir hata oluştu.');
+                        }
+                    },
+                    columns: [
+                        { data: 'username' },
+                        { data: 'roles', orderable: false },
+                        { data: 'actions', orderable: false, searchable: false }
+                    ],
+                    language: {
+                        url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json"
+                    },
+                    pageLength: 25,
+                    order: [[0, 'desc']],
+                    responsive: true,
+                    dom: 'Bfrtip',
+                    drawCallback: () => {
+                        this.bindEvents();
+                    }
+                });
+            }
+
+            bindEvents() {
+                $('.delete-user').off('click').on('click', (e) => {
+                    e.preventDefault();
+                    this.handleDelete($(e.currentTarget));
+                });
+            }
+
+            handleDelete($button) {
+                const userId = $button.data('id');
+                const userName = $button.data('username') || 'Bu kullanıcı';
+
+                if (confirm(`${userName} kullanıcısını silmek istediğinizden emin misiniz?`)) {
+                    this.deleteUser(userId);
+                }
+            }
+
+            deleteUser(userId) {
+                $.ajax({
+                    url: `/panel/users/${userId}/delete`,
+                    type: 'POST',
+                    headers: {
+                        'X-HTTP-Method-Override': 'DELETE',
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: (result) => {
+                        this.table.ajax.reload(null, false);
+                        this.showSuccess('Kullanıcı başarıyla silindi.');
+                    },
+                    error: (xhr) => {
+                        const errorMsg = xhr.responseJSON?.message || 'Bir hata oluştu';
+                        this.showError(`Silme işlemi başarısız: ${errorMsg}`);
+                    }
+                });
+            }
+
+            showSuccess(message) {
+                alert(message);
+            }
+
+            showError(message) {
+                console.error(message);
+                alert(message);
+            }
+        }
+
+        $(document).ready(() => {
+            new UserDataTable();
+        });
+    </script>
+{% endblock %}
