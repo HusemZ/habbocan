@@ -12,8 +12,7 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('styles/variables.css') }}">
         <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/sidebar.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/header.css') }}">
+        <link rel="stylesheet" href="{{ asset('styles/components/navbar.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     {% endblock %}
 
@@ -23,11 +22,9 @@
 </head>
 <body>
 <div class="layout-container">
-    {% include 'app/components/sidebar.html.twig' %}
+    {% include 'app/components/navbar.html.twig' %}
 
     <div class="main-content">
-        {% include 'app/components/header.html.twig' %}
-
         <main>
             {% for label, messages in app.flashes %}
                 {% for message in messages %}
