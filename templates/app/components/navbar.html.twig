@@ -1,0 +1,65 @@
+<nav class="navbar-menu">
+    <a href="#" class="logo">
+        <img src="{{ asset('images/logo/logo.gif') }}" alt="MyApp">
+    </a>
+    <ul>
+        <li><a href="/">Ana Sayfa</a></li>
+        <li><a href="{{ path('app_news') }}">Haberler</a></li>
+        <li>
+            <a href="javascript:void(0)">Topluluk</a>
+            <ul class="submenu">
+                <li><a href="{{ path('app_team') }}"><span>Ekibimiz</span></a></li>
+                <li><a href="{{ path('app_career') }}"><span>Kariyer</span></a></li>
+                <li><a href="{{ path('app_about') }}"><span>Hakkımızda</span></a></li>
+                <li><a href="{{ path('app_contact') }}"><span>İletişim</span></a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="javascript:void(0)">Habbo</a>
+            <ul class="submenu">
+                <li><a href="{{ path('app_habbo_what_is_habbo') }}"><span>Habbo Nedir?</span></a></li>
+                <li><a href="{{ path('app_habbo_club') }}"><span>Habbo Kulübü</span></a></li>
+                <li><a href="{{ path('app_habbo_builders_club') }}"><span>Mimarlar Kulübü</span></a></li>
+                <li><a href="{{ path('app_habbo_credits') }}"><span>Habbo Kredisi</span></a></li>
+                <li><a href="{{ path('app_habbo_diamonds') }}"><span>Habbo Elması</span></a></li>
+                <li><a href="{{ path('app_habbo_ambassadors') }}"><span>Büyükelçiler</span></a></li>
+                <li><a href="{{ path('app_habbo_creative_builders') }}"><span>Yaratıcı Mimarlar</span></a></li>
+                <li><a href="{{ path('app_habbo_sponsored_games') }}"><span>Sponsorlu Oyunlar</span></a></li>
+                <li><a href="{{ path('app_habbo_fansites') }}"><span>Fansiteler</span></a></li>
+            </ul>
+        </li>
+    </ul>
+
+    {% if app.user %}
+        <div class="user-menu">
+            <div class="user-dropdown">
+                <div class="user-trigger">
+                    <span class="username">{{ app.user.username }}</span>
+                    <i class="fas fa-chevron-down dropdown-arrow"></i>
+                    <div class="user-avatar">
+                        <img src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ app.user.username }}&size=b&direction=4&head_direction=4&gesture=sml" alt="{{ app.user.username }}">
+                    </div>
+                </div>
+                <div class="dropdown-menu">
+                    <a href="{{ path('app_profile', { id: app.user.id }) }}" class="dropdown-item">
+                        <i class="fas fa-user"></i>
+                        <span>Profilim</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-cog"></i>
+                        <span>Ayarlar</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a href="{{ path('app_logout') }}" class="dropdown-item logout-item">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Çıkış Yap</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="navbar-actions">
+            <a href="{{ path('app_login') }}" class="btn btn-login">Giriş Yap</a>
+        </div>
+    {% endif %}
+</nav>
