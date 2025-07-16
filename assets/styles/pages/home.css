@@ -1,4 +1,116 @@
 /* En Son Haberler Section */
+/* Sabitlenmiş Haberler Section */
+.pinned-news-section {
+    margin-bottom: 4rem;
+}
+
+.pinned-news-swiper {
+    position: relative;
+    padding: 0 0 40px 0;
+    overflow: visible;
+}
+
+.pinned-news-swiper .swiper-slide {
+    transition: all 0.4s ease;
+    transform-origin: center;
+}
+
+.pinned-news-card {
+    position: relative;
+    background-color: #031419;
+    border-radius: 1rem;
+    overflow: hidden;
+    height: 350px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.pinned-news-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.pinned-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.pinned-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.pinned-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+    display: block;
+}
+
+.pinned-title:hover {
+    color: var(--accent-blue, #4a90e2);
+}
+
+.pinned-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: auto;
+}
+
+.pinned-date,
+.pinned-comments {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s ease;
+}
+
+.pinned-date i,
+.pinned-comments i {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+}
+
+.pinned-date:hover,
+.pinned-comments:hover {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Swiper Customization */
+.pinned-news-swiper .swiper-button-next,
+.pinned-news-swiper .swiper-button-prev {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.pinned-news-swiper .swiper-button-next:hover,
+.pinned-news-swiper .swiper-button-prev:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+.pinned-news-swiper .swiper-button-next::after,
+.pinned-news-swiper .swiper-button-prev::after {
+    font-size: 16px;
+    font-weight: 700;
+}
+
 .section-title {
     padding: 0 2rem;
     font-size: 1.8rem;
@@ -14,15 +126,122 @@
     left: 2rem;
     width: 80px;
     height: 4px;
-    background: linear-gradient(45deg, #c50349, #0071bc);
+    background: #fff;
     border-radius: 2px;
+}
+
+.latest-news-wrapper {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    padding: 0 2rem;
 }
 
 .featured-news {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.badges-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.badges-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    justify-content: center;
+}
+
+.badges-title i {
+    color: #ffd700;
+    font-size: 1.1rem;
+}
+
+.badges-box {
+    background: linear-gradient(
+        to bottom,
+        rgba(197, 3, 73, 0.8) 0%,
+        rgba(0, 113, 188, 0.2) 100%
+    );
+    border-radius: 1rem;
+    padding: 1.5rem;
+    height: fit-content;
+}
+
+.badges-box:not(:last-child) {
+    margin-bottom: 1.2rem;
+}
+
+.badges-grid {
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    padding: 0 2rem;
+    gap: 10px;
+}
+
+.badge-item {
+    position: relative;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+}
+
+.badge-item:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
+}
+
+.badge-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.badge-item::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin-bottom: 5px;
+    pointer-events: none;
+}
+
+.badge-item:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+.no-badges {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    padding: 2rem 0;
 }
 
 .news-card {
@@ -31,7 +250,6 @@
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 1rem;
-    overflow: hidden;
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -43,6 +261,7 @@
     left: 0;
     right: 0;
     bottom: 0;
+    border-radius: 1rem;
     background: linear-gradient(
         135deg,
         rgba(3, 20, 25, 0.7) 0%,
@@ -83,6 +302,7 @@
     margin-top: 0;
     line-height: 1.3;
     color: white;
+    text-decoration: none;
 }
 
 .news-excerpt {
@@ -93,6 +313,12 @@
     opacity: 0.9;
 }
 
+.news-feat {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
 .news-link {
     display: inline-flex;
     align-items: center;
@@ -100,12 +326,12 @@
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
     text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
+    padding: 6px 12px;
+    border-radius: 16px;
     font-weight: 600;
     font-size: 0.8rem;
     transition: all 0.3s ease;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .news-link i {
@@ -142,9 +368,75 @@
     font-size: 1.1rem;
 }
 
+.news-badges {
+    display: flex;
+    gap: 8px;
+}
+
+.badge-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.badge-icon {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.badge-wrapper::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin-bottom: 5px;
+    pointer-events: none;
+}
+
+.badge-wrapper::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 4px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 10;
+    margin-bottom: 1px;
+    pointer-events: none;
+}
+
+.badge-wrapper:hover::before,
+.badge-wrapper:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
 @media (max-width: 1200px) {
+    .latest-news-wrapper {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
     .featured-news {
         grid-template-columns: repeat(3, 1fr);
+    }
+
+    .badges-section {
+        order: -1;
     }
 }
 
@@ -152,18 +444,72 @@
     .featured-news {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .badges-grid {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 8px;
+    }
 }
 
 @media (max-width: 768px) {
+    .pinned-news-swiper {
+        padding: 0 0 40px 0;
+    }
+
+    .pinned-news-card {
+        height: 300px;
+    }
+
+    .pinned-content {
+        padding: 0.8rem;
+    }
+
+    .pinned-image {
+        height: 160px;
+    }
+
+    .pinned-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .pinned-meta {
+        gap: 1rem;
+        font-size: 0.8rem;
+    }
+
+    .pinned-news-swiper .swiper-button-next,
+    .pinned-news-swiper .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+    }
+
     .section-title {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
 
+    .latest-news-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1rem;
+    }
+
     .featured-news {
         grid-template-columns: 1fr;
         gap: 1.5rem;
-        padding: 0 1rem;
+    }
+
+    .badges-section {
+        padding: 1rem;
+    }
+
+    .badges-box {
+        padding: 1rem;
+    }
+
+    .badges-grid {
+        grid-template-columns: repeat(4, 1fr);
     }
 
     .news-card {

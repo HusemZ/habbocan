@@ -5,39 +5,230 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('styles/pages/home.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
 {% endblock %}
 
 {% block body %}
     <div class="home-container">
         
+        <section class="pinned-news-section">
+            <h2 class="section-title">Sabitlenmiş Haberler</h2>
+            <div class="swiper pinned-news-swiper">
+                <div class="swiper-wrapper">
+                    {% if pinned_news is defined and pinned_news|length > 0 %}
+                        {% for news in pinned_news %}
+                            <div class="swiper-slide">
+                                <article class="pinned-news-card">
+                                    <img src="{{ news.coverImage ? asset(news.coverImage) : asset('images/blank.png') }}" alt="{{ news.title }}" class="pinned-image">
+                                    <div class="pinned-content">
+                                        <a href="{{ path('app_news_show', {'slug': news.slug}) }}" class="pinned-title">{{ news.title }}</a>
+                                        <div class="pinned-meta">
+                                            <span class="pinned-date"><i class="far fa-calendar-alt"></i> {{ news.createdAt|date('d.m.Y') }}</span>
+                                            <span class="pinned-comments"><i class="far fa-comment"></i> {{ news.comments|length }}</span>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="swiper-slide">
+                            <div class="no-pinned-message">
+                                <p>Henüz sabitlenmiş haber bulunmamaktadır.</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </section>
         
-        <!-- En Son Haberler -->
         <section>
             <h2 class="section-title">En Son Haberler</h2>
-            <div class="featured-news">
-                {% if latest_news is defined and latest_news|length > 0 %}
-                    {% for news in latest_news %}
-                        <article class="news-card" style="background-image: url('{{ asset(news.coverImage) }}');">
-                            <div class="news-content">
-                                <div>
-                                    <h3 class="news-title">{{ news.title }}</h3>
-                                    <a href="{{ path('app_news_show', {'slug': news.slug}) }}" class="news-link">
-                                        Devamını Oku <i class="fas fa-chevron-right"></i>
-                                    </a>
+            <div class="latest-news-wrapper">
+                <div class="featured-news">
+                    {% if latest_news is defined and latest_news|length > 0 %}
+                        {% for news in latest_news %}
+                            <article class="news-card" style="background-image: url('{{ news.coverImage ? asset(news.coverImage) : asset('images/blank.png') }}');">
+                                <div class="news-content">
+                                    <div>
+                                        <a href="{{ path('app_news_show', {'slug': news.slug}) }}" class="news-title">{{ news.title }}</a>
+                                    </div>
+                                    <div class="news-feat">
+                                        <div>
+                                            <a href="{{ path('app_news_show', {'slug': news.slug}) }}" class="news-link">
+                                                Devamını Oku <i class="fas fa-chevron-right"></i>
+                                            </a>
+                                            <div class="news-meta">
+                                                <span class="news-date"><i class="far fa-calendar-alt"></i> {{ news.createdAt|date('d.m.Y') }}</span>
+                                                <span class="news-comments"><i class="far fa-comment"></i> {{ news.comments|length }}</span>
+                                            </div>
+                                        </div>
+                                        {% if news.badgeCodes is not empty %}
+                                            <div class="news-badges">
+                                                {% set badgeArray = news.badgeCodes|split(',') %}
+                                                {% for badge in badgeArray %}
+                                                    <div class="badge-wrapper" data-tooltip="Rozet Kodu: {{ badge|trim }}">
+                                                        <img src="https://images.habbo.com/c_images/album1584/{{ badge|trim }}.gif"
+                                                                alt="{{ badge|trim }}"
+                                                                class="badge-icon">
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </div>
                                 </div>
-                                <div class="news-meta">
-                                    <span class="news-date"><i class="far fa-calendar-alt"></i> {{ news.createdAt|date('d.m.Y') }}</span>
-                                    <span class="news-comments"><i class="far fa-comment"></i> {{ news.comments|length }}</span>
-                                </div>
-                            </div>
-                        </article>
-                    {% endfor %}
-                {% else %}
-                    <div class="no-news-message">
-                        <p>Henüz haber bulunmamaktadır.</p>
+                            </article>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-news-message">
+                            <p>Henüz haber bulunmamaktadır.</p>
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="badges-section">
+                    <h3 class="badges-title">
+                        Kazanılabilir Rozetler
+                    </h3>
+                    <div class="badges-box">
+                        <div class="badges-grid">
+                        {% set allBadgesWithNews = [] %}
+                        {% if latest_news is defined %}
+                            {% for news in latest_news %}
+                                {% if news.badgeCodes is not empty %}
+                                    {% set badgeArray = news.badgeCodes|split(',') %}
+                                    {% for badge in badgeArray %}
+                                        {% set allBadgesWithNews = allBadgesWithNews|merge([{
+                                            'badge': badge,
+                                            'news': news
+                                        }]) %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        {% if allBadgesWithNews|length > 0 %}
+                            {% for item in allBadgesWithNews|slice(0, 12) %}
+                                <a href="{{ path('app_news_show', {'slug': item.news.slug}) }}" class="badge-item" data-tooltip="Rozet: {{ item.badge|trim }} - {{ item.news.title|slice(0, 10) }}...">
+                                    <img src="https://images.habbo.com/c_images/album1584/{{ item.badge|trim }}.gif" 
+                                         alt="{{ item.badge|trim }}" 
+                                         class="badge-img">
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <p class="no-badges">Henüz rozet bulunmamaktadır.</p>
+                        {% endif %}
                     </div>
-                {% endif %}
+                </div>
+                <div class="badges-section">
+                    <h3 class="badges-title">
+                        Son Eklenen Rozetler
+                    </h3>
+                    <div class="badges-box">
+                        <div class="badges-grid">
+                        {% set allBadgesWithNews = [] %}
+                        {% if latest_news is defined %}
+                            {% for news in latest_news %}
+                                {% if news.badgeCodes is not empty %}
+                                    {% set badgeArray = news.badgeCodes|split(',') %}
+                                    {% for badge in badgeArray %}
+                                        {% set allBadgesWithNews = allBadgesWithNews|merge([{
+                                            'badge': badge,
+                                            'news': news
+                                        }]) %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        {% if allBadgesWithNews|length > 0 %}
+                            {% for item in allBadgesWithNews|slice(0, 12) %}
+                                <a href="{{ path('app_news_show', {'slug': item.news.slug}) }}" class="badge-item" data-tooltip="Rozet: {{ item.badge|trim }} - {{ item.news.title|slice(0, 10) }}...">
+                                    <img src="https://images.habbo.com/c_images/album1584/{{ item.badge|trim }}.gif" 
+                                         alt="{{ item.badge|trim }}" 
+                                         class="badge-img">
+                                </a>
+                            {% endfor %}
+                        {% else %}
+                            <p class="no-badges">Henüz rozet bulunmamaktadır.</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </section>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.pinned-news-swiper', {
+                loop: true,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                slidesPerView: 1,
+                spaceBetween: 30,
+                breakpoints: {
+                    768: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 30,
+                    },
+                    1024: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 40,
+                    },
+                    1400: {
+                        slidesPerView: 3,
+                        spaceBetween: 50,
+                    }
+                },
+                on: {
+                    init: function () {
+                        updateSlideStyles(this);
+                    },
+                    slideChange: function () {
+                        updateSlideStyles(this);
+                    },
+                    transitionEnd: function () {
+                        updateSlideStyles(this);
+                    },
+                    resize: function () {
+                        updateSlideStyles(this);
+                    }
+                }
+            });
+
+            function updateSlideStyles(swiper) {
+                swiper.slides.forEach((slide) => {
+                    slide.style.transform = 'scale(0.85)';
+                    slide.style.opacity = '0.6';
+                    slide.style.zIndex = '1';
+                });
+
+                const activeSlide = swiper.slides[swiper.activeIndex];
+                if (activeSlide) {
+                    activeSlide.style.transform = 'scale(1)';
+                    activeSlide.style.opacity = '1';
+                    activeSlide.style.zIndex = '2';
+                }
+
+                const realActiveSlide = document.querySelector('.pinned-news-swiper .swiper-slide-active');
+                if (realActiveSlide) {
+                    realActiveSlide.style.transform = 'scale(1)';
+                    realActiveSlide.style.opacity = '1';
+                    realActiveSlide.style.zIndex = '2';
+                }
+            }
+        });
+    </script>
 {% endblock %}
