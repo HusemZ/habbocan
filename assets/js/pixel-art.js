@@ -398,8 +398,18 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+function initializePixelArt() {
+    // Eğer zaten bir instance varsa, temizle
+    if (window.pixelArtStudioInstance) {
+        // Mevcut event listener'ları temizle
+        const canvas = document.getElementById("pixelCanvas");
+        if (canvas) {
+            canvas.replaceWith(canvas.cloneNode(true));
+        }
+    }
+    
     window.pixelArtStudioInstance = new PixelArtStudio();
+    
     function renderSavedGallery() {
         const gallery = document.getElementById("savedGallery");
         if (!gallery) return;
@@ -504,4 +514,9 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         });
     };
-});
+}
+
+// Hem normal sayfa yüklemesi hem de Turbo sayfa geçişleri için event listener'lar
+document.addEventListener("DOMContentLoaded", initializePixelArt);
+document.addEventListener("turbo:load", initializePixelArt);
+document.addEventListener("turbo:render", initializePixelArt);
