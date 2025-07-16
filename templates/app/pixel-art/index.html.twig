@@ -1,0 +1,122 @@
+{% extends 'app/base.html.twig' %}
+
+{% block title %}Pixel Art - Habbocan{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/pixel-art.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="pixel-art-container">
+        <div class="page-header">
+            <h1>Pixel Art Studio</h1>
+            <p>Kendi pixel sanatınızı yaratın ve paylaşın!</p>
+        </div>
+
+        <div class="pixel-art-workspace">
+            <div class="toolbar">
+                <div class="tool-section">
+                    <h3>Araçlar</h3>
+                    <div class="tools">
+                        <button class="tool-btn" id="undoBtn" title="Geri Al (Ctrl+Z)">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button class="tool-btn" id="redoBtn" title="İleri Al (Ctrl+Y)">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                        <button class="tool-btn active" data-tool="brush" title="Fırça">
+                            <i class="fas fa-paint-brush"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="eraser" title="Silgi">
+                            <i class="fas fa-eraser"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="bucket" title="Dolgu">
+                            <i class="fas fa-fill-drip"></i>
+                        </button>
+                        <button class="tool-btn" data-tool="picker" title="Renk Seçici">
+                            <i class="fas fa-eye-dropper"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h3>Renkler</h3>
+                    <div class="color-palette">
+                        <div class="current-colors">
+                            <div class="color-box primary" id="primaryColor" style="background-color: #000000;" title="Ana Renk"></div>
+                        </div>
+                        <div class="preset-colors">
+                            <div class="color-item" data-color="#000000" style="background-color: #000000;"></div>
+                            <div class="color-item" data-color="#ffffff" style="background-color: #ffffff;"></div>
+                            <div class="color-item" data-color="#ff0000" style="background-color: #ff0000;"></div>
+                            <div class="color-item" data-color="#00ff00" style="background-color: #00ff00;"></div>
+                            <div class="color-item" data-color="#0000ff" style="background-color: #0000ff;"></div>
+                            <div class="color-item" data-color="#ffff00" style="background-color: #ffff00;"></div>
+                            <div class="color-item" data-color="#ff00ff" style="background-color: #ff00ff;"></div>
+                            <div class="color-item" data-color="#00ffff" style="background-color: #00ffff;"></div>
+                            <div class="color-item" data-color="#ffa500" style="background-color: #ffa500;"></div>
+                            <div class="color-item" data-color="#800080" style="background-color: #800080;"></div>
+                            <div class="color-item" data-color="#ffc0cb" style="background-color: #ffc0cb;"></div>
+                            <div class="color-item" data-color="#a52a2a" style="background-color: #a52a2a;"></div>
+                            <div class="color-item" data-color="#808080" style="background-color: #808080;"></div>
+                            <div class="color-item" data-color="#90ee90" style="background-color: #90ee90;"></div>
+                            <div class="color-item" data-color="#87ceeb" style="background-color: #87ceeb;"></div>
+                            <div class="color-item" data-color="#dda0dd" style="background-color: #dda0dd;"></div>
+                        </div>
+                        <div class="custom-color">
+                            <input type="color" id="colorPicker" value="#000000">
+                            <label for="colorPicker">Özel Renk</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="canvas-controls">
+                    <h3>İşlemler</h3>
+                    <div class="canvas-size">
+                        <label>Boyut:</label>
+                        <select id="canvasSize">
+                            <option value="20">20x20</option>
+                            <option value="40" selected>40x40</option>
+                            <option value="64">64x64</option>
+                        </select>
+                    </div>
+                    <div class="canvas-actions">
+                        <button class="action-btn" id="clearCanvas">
+                            <i class="fas fa-trash"></i> Temizle
+                        </button>
+                        <button class="action-btn" id="downloadCanvas">
+                            <i class="fas fa-download"></i> İndir
+                        </button>
+                        <button class="action-btn" id="saveCanvas">
+                            <i class="fas fa-save"></i> Kaydet
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-area">
+                <div class="canvas-wrapper">
+                    <canvas id="pixelCanvas" width="512" height="512"></canvas>
+                    <div class="canvas-grid" id="canvasGrid"></div>
+                </div>
+                <div class="zoom-controls">
+                    <button id="zoomOut"><i class="fas fa-search-minus"></i></button>
+                    <span id="zoomLevel">100%</span>
+                    <button id="zoomIn"><i class="fas fa-search-plus"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <h2>Kaydedilen Tasarımlarınız</h2>
+            <div class="gallery-grid" id="savedGallery"></div>
+        </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pixel-art.js') }}"></script>
+{% endblock %}
