@@ -42,6 +42,8 @@
                 <div class="swiper-button-prev"></div>
             </div>
         </section>
+
+
         
         <section>
             <h2 class="section-title">En Son Haberler</h2>
@@ -110,7 +112,7 @@
                         
                         {% if allBadgesWithNews|length > 0 %}
                             {% for item in allBadgesWithNews|slice(0, 12) %}
-                                <a href="{{ path('app_news_show', {'slug': item.news.slug}) }}" class="badge-item" data-tooltip="Rozet: {{ item.badge|trim }} - {{ item.news.title|slice(0, 10) }}...">
+                                <a href="{{ path('app_news_show', {'slug': item.news.slug}) }}" class="badge-item" data-tooltip="{{ item.news.title|slice(0, 30) }}...">
                                     <img src="https://images.habbo.com/c_images/album1584/{{ item.badge|trim }}.gif" 
                                          alt="{{ item.badge|trim }}" 
                                          class="badge-img">
@@ -126,35 +128,42 @@
                         Son Eklenen Rozetler
                     </h3>
                     <div class="badges-box">
-                        <div class="badges-grid">
-                        {% set allBadgesWithNews = [] %}
-                        {% if latest_news is defined %}
-                            {% for news in latest_news %}
-                                {% if news.badgeCodes is not empty %}
-                                    {% set badgeArray = news.badgeCodes|split(',') %}
-                                    {% for badge in badgeArray %}
-                                        {% set allBadgesWithNews = allBadgesWithNews|merge([{
-                                            'badge': badge,
-                                            'news': news
-                                        }]) %}
-                                    {% endfor %}
-                                {% endif %}
-                            {% endfor %}
-                        {% endif %}
-                        
-                        {% if allBadgesWithNews|length > 0 %}
-                            {% for item in allBadgesWithNews|slice(0, 12) %}
-                                <a href="{{ path('app_news_show', {'slug': item.news.slug}) }}" class="badge-item" data-tooltip="Rozet: {{ item.badge|trim }} - {{ item.news.title|slice(0, 10) }}...">
-                                    <img src="https://images.habbo.com/c_images/album1584/{{ item.badge|trim }}.gif" 
-                                         alt="{{ item.badge|trim }}" 
-                                         class="badge-img">
-                                </a>
+                        <div class="badges-grid" id="latest-staff-badges">
+                        {% if latest_staff_badges is defined and latest_staff_badges|length > 0 %}
+                            {% for badge in latest_staff_badges %}
+                                <div class="badge-item" data-tooltip="{{ badge.name|trim }}">
+                                    <img src="{{ badge.url_habbo }}" alt="{{ badge.code }}" class="badge-img">
+                                </div>
                             {% endfor %}
                         {% else %}
                             <p class="no-badges">Henüz rozet bulunmamaktadır.</p>
                         {% endif %}
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="section-title">Son Yorumlar</h2>
+            <div class="recent-comments-grid">
+                {% if recent_comments is defined and recent_comments|length > 0 %}
+                    {% for comment in recent_comments|slice(0, 4) %}
+                        <a href="{{ path('app_news_show', {'slug': comment.news.slug}) }}" class="recent-comment-box" style="text-decoration:none;">
+                            <div class="comment-header">
+                                <div class="comment-avatar-wrapper">
+                                    <img class="comment-avatar" src="https://www.habbo.com.tr/habbo-imaging/avatarimage?user={{ comment.user.username|url_encode }}&direction=2&head_direction=2&gesture=sml&size=m" alt="{{ comment.user.username }}">
+                                </div>
+                                <div class="comment-user-info">
+                                    <span class="comment-user">{{ comment.user.username }}</span>
+                                    <span class="comment-date">{{ comment.relativeTime }}</span>
+                                </div>
+                            </div>
+                            <div class="comment-content">{{ comment.content|e }}</div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <p class="no-comments">Henüz yorum bulunmamaktadır.</p>
+                {% endif %}
             </div>
         </section>
     </div>
