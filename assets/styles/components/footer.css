@@ -1,0 +1,61 @@
+/* Modern Footer Component Styles */
+.site-footer {
+    background: #031419;
+    color: #eaf6fb;
+    padding: 2.5rem 0 0.5rem 0;
+    font-size: 1rem;
+    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+    margin-top: 3rem;
+}
+.footer-main {
+    display: grid;
+    justify-content: center;
+}
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    margin-top: 1.5rem;
+    padding: 1.2rem 2rem 1.2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+}
+.footer-legal {
+    color: #52748c;
+    font-size: 0.92rem;
+    text-align: center;
+    max-width: 900px;
+}
+.footer-socials {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+}
+.footer-socials a {
+    color: #52748c;
+    font-size: 1.3rem;
+    transition: color 0.2s;
+    text-decoration: none;
+}
+.footer-socials a:hover {
+    color: rgba(197, 3, 73);
+}
+@media (max-width: 900px) {
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+}
+@media (max-width: 600px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+        padding: 0 1rem;
+    }
+    .footer-bottom {
+        padding: 1.2rem 0.5rem 0.5rem 0.5rem;
+    }
+    .footer-legal {
+        font-size: 0.85rem;
+    }
+}
